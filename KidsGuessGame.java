@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 public class KidsGuessGame extends JPanel{
 
 	JLabel lblNewLabel_1;
-	JLabel instructions;
 	/**
 	 * 
 	 */
@@ -30,14 +29,11 @@ public class KidsGuessGame extends JPanel{
 	
 	private JTextField textField_1;
 	private JButton btnColorChange;
+	private JButton reset;
 
 	
+	
 	public KidsGuessGame(){
-		
-		instructions = new JLabel("The computer has chosen a number, Input a guess for the number");
-		add(instructions);
-
-		
 		//create a list of labels
 		final ArrayList numberLine = new ArrayList();
 		for (int i = 0; i < 20; i++){
@@ -52,7 +48,8 @@ public class KidsGuessGame extends JPanel{
 		textField_1.setColumns(10);
 				
 	
-		final int chosenNum = (int)(Math.random()*numberLine.size());
+		//changed from final int to int
+		int chosenNum = (int)(Math.random()*numberLine.size());
 		
 		btnColorChange = new JButton("Guess");
 		btnColorChange.addActionListener(new ActionListener() {
@@ -81,13 +78,16 @@ public class KidsGuessGame extends JPanel{
 					else{
 						if (guess == chosenNum){
 							JOptionPane.showMessageDialog(null,"Good job you guessed the number");
+							((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
+							//attempt to make the reset button appear after winning the game
+								//resetbutton(numberLine);
 							//add something later about playing again	
 						}
-						else if (guess < chosenNum && guess>low){
+						else if (guess < chosenNum && guess>=low){
 							highlight(guess,false, numberLine);
 							low = guess;
 						}
-						else if (guess > chosenNum && guess<high){
+						else if (guess > chosenNum && guess<=high){
 							highlight(guess,true, numberLine);
 							high = guess;
 						}
@@ -104,6 +104,16 @@ public class KidsGuessGame extends JPanel{
 			}
 		});
 		add(btnColorChange);
+		
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.SOUTH);
+		reset = new JButton("Reset");
+		panel.add(reset);
+		reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dehighlight(numberLine);
+		}
+		});
 	
 	}
 
@@ -123,8 +133,43 @@ public class KidsGuessGame extends JPanel{
 		}
 	}
 	
-
+	public void dehighlight(ArrayList numberLine) {
+		for (int i = 0; i<numberLine.size(); i++) {
+			((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
+			int newchosenNum = (int)(Math.random()*numberLine.size());
+			int chosenNum = newchosenNum;
+			// attempt at resetting number final int chosenNum = (int)(Math.random()*numberLine.size());
+		}
+	}
+	
+	public void randomnumber(ArrayList numberLine) {
+		int newnumber1 = (int)(Math.random()*numberLine.size()); 
+		int newnumber2 = (int)(Math.random()*numberLine.size()); 
+		JOptionPane.showMessageDialog(null,newnumber1);
+		JOptionPane.showMessageDialog(null,newnumber2);
+	}
+	
+	/* function attempt to reset button after winning game
+	public void resetbutton(ArrayList numberLine){
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.SOUTH);
+		reset = new JButton("Reset");
+		panel.add(reset);
+			reset.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dehighlight(numberLine);
+			}
+			});
+	}
+	
+	*/
 	
 	
 	
 }
+
+
+
+
+
+

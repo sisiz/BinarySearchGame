@@ -43,7 +43,10 @@ public class ComputerGuessGame extends JPanel{
 	private JPanel panel_3;
 	private JPanel panel_4;
 
-	
+	/*
+	Take a int of current guess, a boolean of the hign/low status and an arraylist of labels and highghts the labels of the numbers
+	that are no longer in consideration.
+	*/
 	public static void highlight(int guess, boolean lowHigh, ArrayList labels){
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
@@ -58,14 +61,18 @@ public class ComputerGuessGame extends JPanel{
 		}
 	
 	}
-	
+	/*
+	Dehighlight all the labels in the given arraylist
+	*/
 	public void dehighlight(ArrayList numberLine) {
 		for (int i = 0; i<numberLine.size(); i++) {
 			((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
 		}
 	}
 	
-	
+	/*
+	Updates the guess of the number in the given list based on the user feedback as input
+	*/
 	public void binaryGuess(int[] data, int input) 
     {
 		
@@ -81,7 +88,9 @@ public class ComputerGuessGame extends JPanel{
         return ;
    }
 	
-	
+	/*
+	Constructor of the game instance.
+	*/
 	public ComputerGuessGame() {
 		
 		
@@ -128,8 +137,8 @@ public class ComputerGuessGame extends JPanel{
 		
 		
 		//setting initial values for variables
-        low = 0;
-        high = data.length - 1;
+        	low = 0;
+        	high = data.length - 1;
 		guess =(low+high)/2; 
 		lblGuessNum.setText(Integer.toString(guess));
 		
@@ -167,6 +176,8 @@ public class ComputerGuessGame extends JPanel{
 		//button for guess too high
 		btnNewButton = new JButton("Too High!");
 		panel_3.add(btnNewButton);
+		
+		//Pass the "too high" info to binaryGuess and update the display
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highlight(guess, true, numberLine);
@@ -181,10 +192,16 @@ public class ComputerGuessGame extends JPanel{
 		add(panel_4);
 		reset = new JButton("Reset");
 		panel_4.add(reset);
+		
+		//When clicked, reset the game by dehighlighting the labels and reinitialize other parameters
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dehighlight(numberLine);
-		}
+				low = 0;
+        			high = data.length - 1;
+        			guess = (low+high)/2;
+				lblGuessNum.settext(Integer.toString(guess));
+		}	
 		});
 		
 		

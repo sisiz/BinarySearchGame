@@ -198,9 +198,9 @@ public class ComputerGuessGame extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				dehighlight(numberLine);
 				low = 0;
-        			high = data.length - 1;
-        			guess = (low+high)/2;
-        			lblMyGuess.setText("MyGuess:");
+        		high = data.length - 1;
+        		guess = (low+high)/2;
+        		lblMyGuess.setText("MyGuess:");
 				lblGuessNum.setText(Integer.toString(guess));
 		}	
 		});

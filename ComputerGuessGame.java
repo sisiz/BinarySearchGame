@@ -30,13 +30,19 @@ public class ComputerGuessGame extends JPanel{
 	
 	private JButton reset;
 	private JLabel lblGuessNum;
+	private JLabel lblMyGuess;
+	private JLabel instructions;
 	
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	
-	private JPanel panel;
+	private JPanel panel_0;
+	private JPanel panel_1;
 	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel panel_4;
+
 	
 	public static void highlight(int guess, boolean lowHigh, ArrayList labels){
 		//True = too high, False = too low
@@ -78,25 +84,20 @@ public class ComputerGuessGame extends JPanel{
 	
 	public ComputerGuessGame() {
 		
+		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
+		
+		panel_0 = new JPanel();
+		add(panel_0);
+		instructions = new JLabel("<html>Think of a number between 0 and 19 ."
+				+ "<br> The computer will try to guess your number"
+				+ "<br> you will tell the computer 'too high', 'too low' or 'correct'</html>");
+		panel_0.add(instructions);
 
 		
-		panel_2 = new JPanel();
-		add(panel_2, BorderLayout.NORTH);
-		
-		panel = new JPanel();
-		add(panel, BorderLayout.SOUTH);
-		
-		
-		JPanel panel_1 = new JPanel();
-		add(panel_1, BorderLayout.CENTER);
-		
-		JLabel lblMyGuess = new JLabel("My Guess:");
-		panel_1.add(lblMyGuess);
-		
-		lblGuessNum = new JLabel("");
-		panel_1.add(lblGuessNum);
-		
+		panel_1 = new JPanel();
+		add(panel_1);
 		
 		//creating number line
 		JLabel lblNewLabel = new JLabel("");
@@ -109,10 +110,22 @@ public class ComputerGuessGame extends JPanel{
 		{
 			data[i] = i;
 			JLabel lblNew = new JLabel((i)+", " );
-			panel_2.add(lblNew);
+			panel_1.add(lblNew);
 			numberLine.add(lblNew);
-
 		}
+
+		
+		
+		panel_2 = new JPanel();
+		add(panel_2);
+		
+		lblMyGuess = new JLabel("My Guess:");
+		panel_2.add(lblMyGuess);
+		
+		lblGuessNum = new JLabel("");
+		panel_2.add(lblGuessNum);
+		
+		
 		
 		//setting initial values for variables
         low = 0;
@@ -120,48 +133,54 @@ public class ComputerGuessGame extends JPanel{
 		guess =(low+high)/2; 
 		lblGuessNum.setText(Integer.toString(guess));
 		
-		
+		//panel for buttons
+		panel_3 = new JPanel();
+		add(panel_3);
+
 		//button for guess too low
 		btnNewButton_1 = new JButton("Too Low!");
-		panel.add(btnNewButton_1);
+		panel_3.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				highlight(guess, false, numberLine);
 				binaryGuess(data, -1);
 				
-				JOptionPane.showMessageDialog(null,"How about this guess.");
-				lblGuessNum.setText(Integer.toString(guess));
+				//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
+				//lblGuessNum.setText(Integer.toString(guess));
+				lblGuessNum.setText("How about this guess:" + guess);
+
 			}
 		});
 		
 		//button for correct guess
 		btnNewButton_2 = new JButton("Correct");
-		panel.add(btnNewButton_2);
+		panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Your number is guessed correctly. Mind read successful.");
 				((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
-				
-								
+				//JOptionPane.showMessageDialog(null,"Your number is guessed correctly. Mind read successful.");
+				lblMyGuess.setText("Your number is guessed correctly. Mind read successful.");
+				lblGuessNum.setText("your number is: " + guess);
 			}
 		});
 		
 		//button for guess too high
 		btnNewButton = new JButton("Too High!");
-		panel.add(btnNewButton);
+		panel_3.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highlight(guess, true, numberLine);
 				binaryGuess(data, 1);
-				JOptionPane.showMessageDialog(null,"How about this guess.");
-				lblGuessNum.setText(Integer.toString(guess));
+				//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
+				//lblGuessNum.setText(Integer.toString(guess));
+				lblGuessNum.setText("How about this guess:" + guess);
 			}
 		});
 		
-		JPanel panel1 = new JPanel();
-		add(panel1, BorderLayout.SOUTH);
+		panel_4 = new JPanel();
+		add(panel_4);
 		reset = new JButton("Reset");
-		panel1.add(reset);
+		panel_4.add(reset);
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dehighlight(numberLine);

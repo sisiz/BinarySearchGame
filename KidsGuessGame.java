@@ -33,24 +33,28 @@ public class KidsGuessGame extends JPanel{
 	private JTextField textField_1;
 	private JButton btnGuess;
 	private JButton reset;
+	private JLabel instructions;
 
-	private JPanel panel;
+	private JPanel panel_0;
 	private JPanel panel_1;
 	private JPanel panel_2;
-	
+	private JPanel panel_3;
+
 	
 	public KidsGuessGame(){
 		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		panel = new JPanel();
-		add(panel, BorderLayout.NORTH);
-		JLabel instructions = new JLabel("The computer has chosen a number. Enter your guess for what that number is:");
-		panel.add(instructions);
-
-		panel_1 = new JPanel();
-		add(panel_1, BorderLayout.CENTER);
 		
+		panel_0 = new JPanel();
+		add(panel_0);
+		instructions = new JLabel("<html>The computer has chosen a number."
+				+ "<br> Enter your guess for what that number is:<</html>");
+		panel_0.add(instructions);
+
+		
+		panel_1 = new JPanel();
+		add(panel_1);
 		
 		//create a list of labels
 		final ArrayList numberLine = new ArrayList();
@@ -60,20 +64,23 @@ public class KidsGuessGame extends JPanel{
 			numberLine.add(lblNewLabel_1);
 		}
 		
+		
+		panel_2 = new JPanel();
+		add(panel_2);
+		
 		//creates text field to input number to highlight from
 		textField_1 = new JTextField();
-		panel_1.add(textField_1);
+		panel_2.add(textField_1);
 		textField_1.setColumns(10);
 				
-	
+		//set initial variables
 		chosenNum = (int)(Math.random()*numberLine.size());
-		
 		low = 0;
 		high = numberLine.size() -1 ;
 		
 		btnGuess = new JButton("Guess");
-		btnGuess.addActionListener(new ActionListener() {
-			
+		panel_2.add(btnGuess);
+		btnGuess.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 				
 				//get text field input
@@ -123,12 +130,12 @@ public class KidsGuessGame extends JPanel{
 				
 			}
 		});
-		panel_1.add(btnGuess);
 		
-		panel_2 = new JPanel();
-		add(panel_2, BorderLayout.SOUTH);
+		
+		panel_3 = new JPanel();
+		add(panel_3);
 		reset = new JButton("Reset");
-		panel_2.add(reset);
+		panel_3.add(reset);
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dehighlight(numberLine);

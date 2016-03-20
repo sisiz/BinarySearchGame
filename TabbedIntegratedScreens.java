@@ -59,26 +59,26 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 		JButton btnNewButton = new JButton("Kids Guess Mode");
 		
-		splitPane.setLeftComponent(btnNewButton);
+		splitPane.setLeftComponent(btnNewButton); //Button for Kids Guess Mode
 		
 		JButton btnNewButton_1 = new JButton("Computer Guess Mode");
-		splitPane.setRightComponent(btnNewButton_1);
+		splitPane.setRightComponent(btnNewButton_1); //Button for Computer Guess Mode
 		
 		panel = new KidsGuessGame();
-		tabbedPane.addTab("Kids Game", null, panel, null);
+		tabbedPane.addTab("Kids Game", null, panel, null); //Kid Guess Mode tab
 		
 		panel_1 = new ComputerGuessGame();
-		tabbedPane.addTab("Computer Game", null, panel_1, null);
+		tabbedPane.addTab("Computer Game", null, panel_1, null); //Computer Guess Mode tab
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tabbedPane.setSelectedComponent(panel);
+				tabbedPane.setSelectedComponent(panel); //switch to Kids Guess Mode
 			}});
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tabbedPane.setSelectedComponent(panel_1);
+				tabbedPane.setSelectedComponent(panel_1); //switch to Computer Guess Mode
 			}
 		}
 		);

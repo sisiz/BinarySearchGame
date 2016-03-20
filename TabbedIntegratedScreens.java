@@ -41,6 +41,7 @@ public class TabbedIntegratedScreens extends JFrame {
 	private ComputerGuessGame panel_1;
 	
 	public TabbedIntegratedScreens() {
+		//initiates background template
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400);
 		contentPane = new JPanel();
@@ -52,9 +53,10 @@ public class TabbedIntegratedScreens extends JFrame {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
-		//creates Start Screen panel & tab
-		JPanel panel_0 = new JPanel(); //Start Screen panel
-		tabbedPane.addTab("Start Screen", null, panel_0, null); //Start Screen tab
+		//creates Start Screen panel
+		JPanel panel_0 = new JPanel(); 
+		//createsStart Screen tab
+		tabbedPane.addTab("Start Screen", null, panel_0, null); 
 		
 		//splits the Start Screen panel into 2 for the Kids Guess Mode button & the Computer Guess Mode button
 		JSplitPane splitPane = new JSplitPane();
@@ -62,28 +64,34 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 		//creates button for Kids Guess Mode
 		JButton btnNewButton = new JButton("Kids Guess Mode");
-		splitPane.setLeftComponent(btnNewButton); //puts button in left pane that was previously split
+		//puts button in left pane that was previously split
+		splitPane.setLeftComponent(btnNewButton); 
 		
 		//creates button for Computer Guess Mode
 		JButton btnNewButton_1 = new JButton("Computer Guess Mode");
-		splitPane.setRightComponent(btnNewButton_1); //puts button in right pane that was previously split
+		//puts button in right pane that was previously split
+		splitPane.setRightComponent(btnNewButton_1); 
 		
-		//creates Kids Guess Mode panel & tab
-		panel = new KidsGuessGame(); //Kids Guess Mode panel
-		tabbedPane.addTab("Kids Game", null, panel, null); //Kids Guess Mode tab
+		//creates Kids Guess Mode panel
+		panel = new KidsGuessGame(); 
+		//creates Kids Guess Mode tab
+		tabbedPane.addTab("Kids Game", null, panel, null); 
 		
-		//creates Computer Guess Mode panel & tab
-		panel_1 = new ComputerGuessGame(); //Computer Guess Mode panel
-		tabbedPane.addTab("Computer Game", null, panel_1, null); //Computer Guess Mode tab
+		//creates Computer Guess Mode panel
+		panel_1 = new ComputerGuessGame(); 
+		//creates Computer Guess Mode tab
+		tabbedPane.addTab("Computer Game", null, panel_1, null);
 		
 		//actions for the buttons
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel); //switch tab to Kids Guess Mode tab
+				//switch tab to Kids Guess Mode tab
+				tabbedPane.setSelectedComponent(panel); 
 			}});
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel_1); //switch tab to Computer Guess Mode tab
+				//switch tab to Computer Guess Mode tab
+				tabbedPane.setSelectedComponent(panel_1); 
 			}
 		}
 		);

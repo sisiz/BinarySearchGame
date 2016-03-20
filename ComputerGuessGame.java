@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -30,6 +31,13 @@ public class ComputerGuessGame extends JPanel{
 	private JButton reset;
 	private JLabel lblGuessNum;
 	
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	
+	private JPanel panel;
+	private JPanel panel_2;
+	
 	public static void highlight(int guess, boolean lowHigh, ArrayList labels){
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
@@ -45,6 +53,13 @@ public class ComputerGuessGame extends JPanel{
 	
 	}
 	
+	public void dehighlight(ArrayList numberLine) {
+		for (int i = 0; i<numberLine.size(); i++) {
+			((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
+		}
+	}
+	
+	
 	public void binaryGuess(int[] data, int input) 
     {
 		
@@ -55,35 +70,23 @@ public class ComputerGuessGame extends JPanel{
              if(input == 1) {
                  high = guess - 1;
              }
-             
              guess = (low + high) / 2;
-			//hilight(low, high);
-			//System.out.println("Low: " + low + " High: " + high);
-
         }
         return ;
    }
 	
+	
 	public ComputerGuessGame() {
 		
-		JPanel panel_2 = new JPanel();
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
+		
+		panel_2 = new JPanel();
 		add(panel_2, BorderLayout.NORTH);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
 		
-		JButton btnNewButton_1 = new JButton("Too Low!");
-		
-		panel.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Correct");
-		
-		
-		panel.add(btnNewButton_2);
-		
-		JButton btnNewButton = new JButton("Too High!");
-		
-		panel.add(btnNewButton);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.CENTER);
@@ -94,6 +97,8 @@ public class ComputerGuessGame extends JPanel{
 		lblGuessNum = new JLabel("");
 		panel_1.add(lblGuessNum);
 		
+		
+		//creating number line
 		JLabel lblNewLabel = new JLabel("");
 		panel_1.add(lblNewLabel);
 		int x = 20;
@@ -109,12 +114,16 @@ public class ComputerGuessGame extends JPanel{
 
 		}
 		
-		
+		//setting initial values for variables
         low = 0;
         high = data.length - 1;
 		guess =(low+high)/2; 
 		lblGuessNum.setText(Integer.toString(guess));
 		
+		
+		//button for guess too low
+		btnNewButton_1 = new JButton("Too Low!");
+		panel.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				highlight(guess, false, numberLine);
@@ -125,6 +134,9 @@ public class ComputerGuessGame extends JPanel{
 			}
 		});
 		
+		//button for correct guess
+		btnNewButton_2 = new JButton("Correct");
+		panel.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null,"Your number is guessed correctly. Mind read successful.");
@@ -134,6 +146,9 @@ public class ComputerGuessGame extends JPanel{
 			}
 		});
 		
+		//button for guess too high
+		btnNewButton = new JButton("Too High!");
+		panel.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highlight(guess, true, numberLine);
@@ -156,11 +171,7 @@ public class ComputerGuessGame extends JPanel{
 		
 	}
 		
-	public void dehighlight(ArrayList numberLine) {
-		for (int i = 0; i<numberLine.size(); i++) {
-			((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
-		}
-	}
+	
 	
 }
 

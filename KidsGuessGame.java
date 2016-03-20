@@ -3,10 +3,12 @@ package example1;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -24,35 +26,53 @@ public class KidsGuessGame extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int high = 19;
-	private int low = 0;
+	private int high;
+	private int low;
+	private int chosenNum;
 	
 	private JTextField textField_1;
-	private JButton btnColorChange;
+	private JButton btnGuess;
 	private JButton reset;
 
+	private JPanel panel;
+	private JPanel panel_1;
+	private JPanel panel_2;
 	
 	
 	public KidsGuessGame(){
+		
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
+		panel = new JPanel();
+		add(panel, BorderLayout.NORTH);
+		JLabel instructions = new JLabel("The computer has chosen a number. Enter your guess for what that number is:");
+		panel.add(instructions);
+
+		panel_1 = new JPanel();
+		add(panel_1, BorderLayout.CENTER);
+		
+		
 		//create a list of labels
 		final ArrayList numberLine = new ArrayList();
 		for (int i = 0; i < 20; i++){
 			lblNewLabel_1 = new JLabel((i)+", " );
-			add(lblNewLabel_1);
+			panel_1.add(lblNewLabel_1);
 			numberLine.add(lblNewLabel_1);
 		}
 		
 		//creates text field to input number to highlight from
 		textField_1 = new JTextField();
-		add(textField_1);
+		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 				
 	
-		//changed from final int to int
-		int chosenNum = (int)(Math.random()*numberLine.size());
+		chosenNum = (int)(Math.random()*numberLine.size());
 		
-		btnColorChange = new JButton("Guess");
-		btnColorChange.addActionListener(new ActionListener() {
+		low = 0;
+		high = numberLine.size() -1 ;
+		
+		btnGuess = new JButton("Guess");
+		btnGuess.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -103,15 +123,18 @@ public class KidsGuessGame extends JPanel{
 				
 			}
 		});
-		add(btnColorChange);
+		panel_1.add(btnGuess);
 		
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.SOUTH);
+		panel_2 = new JPanel();
+		add(panel_2, BorderLayout.SOUTH);
 		reset = new JButton("Reset");
-		panel.add(reset);
+		panel_2.add(reset);
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dehighlight(numberLine);
+				chosenNum = (int)(Math.random()*numberLine.size());
+				low = 0;
+				high = numberLine.size() -1 ;				
 		}
 		});
 	
@@ -123,22 +146,21 @@ public class KidsGuessGame extends JPanel{
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
 			for (int i = guess; i<numberLine.size() ; i++){
-				((JComponent)numberLine.get(i)).setForeground(Color.CYAN);
+				((JComponent)numberLine.get(i)).setForeground(Color.RED);
 			}	 
 		}
 		else{
 			for (int i = 0; i<=guess ; i++){
-				((JComponent)numberLine.get(i)).setForeground(Color.CYAN);
+				((JComponent)numberLine.get(i)).setForeground(Color.RED);
 			}
 		}
 	}
 	
+	
+	//sets numberline back to black
 	public void dehighlight(ArrayList numberLine) {
 		for (int i = 0; i<numberLine.size(); i++) {
 			((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
-			int newchosenNum = (int)(Math.random()*numberLine.size());
-			int chosenNum = newchosenNum;
-			// attempt at resetting number final int chosenNum = (int)(Math.random()*numberLine.size());
 		}
 	}
 	
@@ -149,27 +171,9 @@ public class KidsGuessGame extends JPanel{
 		JOptionPane.showMessageDialog(null,newnumber2);
 	}
 	
-	/* function attempt to reset button after winning game
-	public void resetbutton(ArrayList numberLine){
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.SOUTH);
-		reset = new JButton("Reset");
-		panel.add(reset);
-			reset.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					dehighlight(numberLine);
-			}
-			});
-	}
-	
-	*/
+
 	
 	
 	
 }
-
-
-
-
-
 

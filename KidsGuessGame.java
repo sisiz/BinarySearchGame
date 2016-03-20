@@ -21,9 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class KidsGuessGame extends JPanel{
 
 	JLabel lblNewLabel_1;
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	private int high;
@@ -45,17 +43,16 @@ public class KidsGuessGame extends JPanel{
 		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		
+		//panel with instructions
 		panel_0 = new JPanel();
 		add(panel_0);
 		instructions = new JLabel("<html>The computer has chosen a number."
 				+ "<br> Enter your guess for what that number is:<</html>");
 		panel_0.add(instructions);
 
-		
+		//panel for number line
 		panel_1 = new JPanel();
 		add(panel_1);
-		
 		//create a list of labels
 		final ArrayList numberLine = new ArrayList();
 		for (int i = 0; i < 20; i++){
@@ -64,7 +61,7 @@ public class KidsGuessGame extends JPanel{
 			numberLine.add(lblNewLabel_1);
 		}
 		
-		
+		//panel for user input (text box for guess, and button to guess)
 		panel_2 = new JPanel();
 		add(panel_2);
 		
@@ -72,12 +69,13 @@ public class KidsGuessGame extends JPanel{
 		textField_1 = new JTextField();
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
-				
+		
 		//set initial variables
 		chosenNum = (int)(Math.random()*numberLine.size());
 		low = 0;
 		high = numberLine.size() -1 ;
 		
+		//button for user to make guess after inputing muber into text box
 		btnGuess = new JButton("Guess");
 		panel_2.add(btnGuess);
 		btnGuess.addActionListener(new ActionListener() {	
@@ -87,7 +85,7 @@ public class KidsGuessGame extends JPanel{
 				String s = textField_1.getText();
 				int guess = 0;
 				
-				//try to make sure it is actually a number
+				//make sure it is a valid guess
 				try{
 					guess = Integer.parseInt(s);
 					//check if number in range
@@ -101,19 +99,20 @@ public class KidsGuessGame extends JPanel{
 						textField_1.setText("");
 					}
 					
-					//valid input number, 
+					//valid input number:
 					else{
+						//child's guess is the number the computer chose
 						if (guess == chosenNum){
 							JOptionPane.showMessageDialog(null,"Good job you guessed the number");
 							((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
-							//attempt to make the reset button appear after winning the game
-								//resetbutton(numberLine);
-							//add something later about playing again	
+							//add something later about playing again
 						}
+						//child's guess less than the number the computer chose
 						else if (guess < chosenNum && guess>=low){
 							highlight(guess,false, numberLine);
 							low = guess;
 						}
+						//child's guess is grater than the number the computer chose
 						else if (guess > chosenNum && guess<=high){
 							highlight(guess,true, numberLine);
 							high = guess;
@@ -122,8 +121,7 @@ public class KidsGuessGame extends JPanel{
 					}
 						
 				}catch (Exception e1) {
-					//e1.printStackTrace();
-					//create a pop up that says not an integer
+					//create a pop up that says input not an integer
 					JOptionPane.showMessageDialog(null,"you need to input a integer");
 					textField_1.setText("");
 				}	
@@ -131,7 +129,7 @@ public class KidsGuessGame extends JPanel{
 			}
 		});
 		
-		
+		//panel for restart button
 		panel_3 = new JPanel();
 		add(panel_3);
 		reset = new JButton("Reset");
@@ -148,7 +146,7 @@ public class KidsGuessGame extends JPanel{
 	}
 
 	
-	
+	//hilights number line, either all numbers below of above guess
 	public void highlight(int guess, boolean lowHigh, ArrayList numberLine){
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
@@ -170,15 +168,6 @@ public class KidsGuessGame extends JPanel{
 			((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
 		}
 	}
-	
-	public void randomnumber(ArrayList numberLine) {
-		int newnumber1 = (int)(Math.random()*numberLine.size()); 
-		int newnumber2 = (int)(Math.random()*numberLine.size()); 
-		JOptionPane.showMessageDialog(null,newnumber1);
-		JOptionPane.showMessageDialog(null,newnumber2);
-	}
-	
-
 	
 	
 	

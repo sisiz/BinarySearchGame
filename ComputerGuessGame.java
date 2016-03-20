@@ -201,7 +201,7 @@ public class ComputerGuessGame extends JPanel{
         			high = data.length - 1;
         			guess = (low+high)/2;
         			lblMyGuess.setText("MyGuess:");
-				lblGuessNum.settext(Integer.toString(guess));
+				lblGuessNum.setText(Integer.toString(guess));
 		}	
 		});
 		

@@ -120,7 +120,7 @@ public class KidsGuessGame extends JPanel{
 									+ "<br>Guess a number that is still black</html>");
 							
 						}
-						//child's guess is grater than the number the computer chose
+						//child's guess is greater than the number the computer chose
 						else if (guess > chosenNum && guess<=high){
 							highlight(guess,true, numberLine);
 							high = guess;

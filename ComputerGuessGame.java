@@ -47,7 +47,7 @@ public class ComputerGuessGame extends JPanel{
 	Take a int of current guess, a boolean of the hign/low status and an arraylist of labels and highghts the labels of the numbers
 	that are no longer in consideration.
 	*/
-	public static void highlight(int guess, boolean lowHigh, ArrayList labels){
+	public void highlight(int guess, boolean lowHigh, ArrayList labels){
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
 			for (int i = guess; i<labels.size() ; i++){
@@ -59,7 +59,7 @@ public class ComputerGuessGame extends JPanel{
 				((JComponent)labels.get(i)).setForeground(Color.RED);
 			}
 		}
-	
+		repaint();
 	}
 	/*
 	Dehighlight all the labels in the given arraylist
@@ -202,6 +202,7 @@ public class ComputerGuessGame extends JPanel{
         		guess = (low+high)/2;
         		lblMyGuess.setText("MyGuess:");
 				lblGuessNum.setText(Integer.toString(guess));
+				repaint();
 		}	
 		});
 		

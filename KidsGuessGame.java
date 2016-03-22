@@ -152,7 +152,8 @@ public class KidsGuessGame extends JPanel{
 				dehighlight(numberLine);
 				chosenNum = (int)(Math.random()*numberLine.size());
 				low = 0;
-				high = numberLine.size() -1 ;				
+				high = numberLine.size() -1 ;	
+				repaint();
 		}
 		});
 	
@@ -172,6 +173,7 @@ public class KidsGuessGame extends JPanel{
 				((JComponent)numberLine.get(i)).setForeground(Color.RED);
 			}
 		}
+		repaint();
 	}
 	
 	

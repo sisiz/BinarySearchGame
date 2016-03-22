@@ -34,7 +34,8 @@ public class KidsGuessGame extends JPanel{
 	private JButton btnGuess;
 	private JButton reset;
 	private JLabel instructions;
-
+	private JLabel instructions_2;
+	
 	private JPanel panel_0;
 	private JPanel panel_1;
 	private JPanel panel_2;
@@ -52,6 +53,8 @@ public class KidsGuessGame extends JPanel{
 				+ "<br> Enter your guess for what that number is:<</html>");
 		panel_0.add(instructions);
 
+		
+		
 		//panel for number line
 		panel_1 = new JPanel();
 		add(panel_1);
@@ -113,11 +116,16 @@ public class KidsGuessGame extends JPanel{
 						else if (guess < chosenNum && guess>=low){
 							highlight(guess,false, numberLine);
 							low = guess;
+							instructions_2.setText("<html>The red numbers have been removed from the range"
+									+ "<br>Guess a number that is still black</html>");
+							
 						}
 						//child's guess is grater than the number the computer chose
 						else if (guess > chosenNum && guess<=high){
 							highlight(guess,true, numberLine);
 							high = guess;
+							instructions_2.setText("<html>The red numbers have been removed from the range"
+									+ "<br>Guess a number that is still black</html>");
 						}
 						
 					}
@@ -130,6 +138,9 @@ public class KidsGuessGame extends JPanel{
 				
 			}
 		});
+		
+		instructions_2 = new JLabel("");
+		panel_2.add(instructions_2);
 		
 		//panel for restart button
 		panel_3 = new JPanel();

@@ -40,6 +40,8 @@ public class KidsGuessGame extends JPanel{
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
+	
+	private ArrayList numberLine;
 
 	
 	public KidsGuessGame(){
@@ -59,12 +61,19 @@ public class KidsGuessGame extends JPanel{
 		panel_1 = new JPanel();
 		add(panel_1);
 		//create a list of labels
-		final ArrayList numberLine = new ArrayList();
+		numberLine = new ArrayList();
 		for (int i = 0; i < 20; i++){
-			lblNewLabel_1 = new JLabel((i)+", " );
-			panel_1.add(lblNewLabel_1);
-			numberLine.add(lblNewLabel_1);
+			final Superhero Superhero_1 = new Superhero( i, "imagefilename.jpeg" );
+			Superhero_1.addActionListener(new ActionListener() {	
+				public void actionPerformed(ActionEvent e) {
+					binary_search( Superhero_1.getStength() );
+				}
+			});
+			panel_1.add(Superhero_1);
+			numberLine.add(Superhero_1);
 		}
+		
+	
 		
 		//panel for user input (text box for guess, and button to guess)
 		panel_2 = new JPanel();
@@ -107,26 +116,7 @@ public class KidsGuessGame extends JPanel{
 					//valid input number:
 					else{
 						//child's guess is the number the computer chose
-						if (guess == chosenNum){
-							JOptionPane.showMessageDialog(null,"Good job you guessed the number");
-							((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
-							//add something later about playing again
-						}
-						//child's guess less than the number the computer chose
-						else if (guess < chosenNum && guess>=low){
-							highlight(guess,false, numberLine);
-							low = guess;
-							instructions_2.setText("<html>The red numbers have been removed from the range"
-									+ "<br>Guess a number that is still black</html>");
-							
-						}
-						//child's guess is greater than the number the computer chose
-						else if (guess > chosenNum && guess<=high){
-							highlight(guess,true, numberLine);
-							high = guess;
-							instructions_2.setText("<html>The red numbers have been removed from the range"
-									+ "<br>Guess a number that is still black</html>");
-						}
+						binary_search(guess);
 						
 					}
 						
@@ -159,6 +149,33 @@ public class KidsGuessGame extends JPanel{
 	
 	}
 
+	
+	public void binary_search(int guess){
+		
+		if (guess == chosenNum){
+			JOptionPane.showMessageDialog(null,"Good job you guessed the number");
+			((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
+			//add something later about playing again
+		}
+		//child's guess less than the number the computer chose
+		else if (guess < chosenNum && guess>=low){
+			highlight(guess,false, numberLine);
+			low = guess;
+			instructions_2.setText("<html>The red numbers have been removed from the range"
+					+ "<br>Guess a number that is still black</html>");
+			
+		}
+		//child's guess is greater than the number the computer chose
+		else if (guess > chosenNum && guess<=high){
+			highlight(guess,true, numberLine);
+			high = guess;
+			instructions_2.setText("<html>The red numbers have been removed from the range"
+					+ "<br>Guess a number that is still black</html>");
+		}
+		
+		
+	}
+	
 	
 	//hilights number line, either all numbers below of above guess
 	public void highlight(int guess, boolean lowHigh, ArrayList numberLine){

@@ -135,7 +135,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		btnInstructions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//change start screen image to binarysearch image]
-				ImageIcon binarysearch = new ImageIcon("src/binarysearch.png");
+				ImageIcon binarysearch = new ImageIcon("src/binarysearchstartscreen.png");
 				//sets the binarysearch image onto the imageholder
 				imageholder.setIcon(binarysearch);
 			}});

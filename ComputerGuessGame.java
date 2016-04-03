@@ -202,7 +202,7 @@ public class ComputerGuessGame extends JPanel{
 				((JLabel) numberLine.get(guess)).setIcon(im);
 				
 				guessCount += 1;
-				guessCounter.setText("I took me " + Integer.toString(guessCount) + " total guesses " );
+				guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
 				
 				//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
 				//JOptionPane.showMessageDialog(null,"Your number is guessed correctly. Mind read successful.");

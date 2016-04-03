@@ -1,4 +1,4 @@
-package example1;
+package example;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -46,6 +46,7 @@ public class ComputerGuessGame extends JPanel{
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JPanel panel_4;
+	private JPanel panel_5;
 
 	/*
 	Take a int of current guess, a boolean of the hign/low status and an arraylist of labels and highghts the labels of the numbers
@@ -113,9 +114,9 @@ public class ComputerGuessGame extends JPanel{
 		
 		panel_0 = new JPanel();
 		add(panel_0);
-		instructions = new JLabel("<html>Think of a number between 0 and 19 ."
-				+ "<br> The computer will try to guess your number"
-				+ "<br> you will tell the computer 'too high', 'too low' or 'correct'</html>");
+		instructions = new JLabel("<html>Pick one of these superheroes."
+				+ "<br> The computer will try to guess which superhero you chose."
+				+ "<br> You will tell the computer 'too far to the left', 'too far to the right' or 'correct.'</html>");
 		panel_0.add(instructions);
 
 		
@@ -172,8 +173,8 @@ public class ComputerGuessGame extends JPanel{
 		panel_3 = new JPanel();
 		add(panel_3);
 
-		//button for guess too low
-		btnNewButton_1 = new JButton("Too Low!");
+		//button for guess too far to the left
+		btnNewButton_1 = new JButton("Too far to the left!");
 		panel_3.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -211,8 +212,8 @@ public class ComputerGuessGame extends JPanel{
 			}
 		});
 		
-		//button for guess too high
-		btnNewButton = new JButton("Too High!");
+		//button for guess too far to the right
+		btnNewButton = new JButton("Too far to the right!");
 		panel_3.add(btnNewButton);
 		//Pass the "too high" info to binaryGuess and update the display
 		btnNewButton.addActionListener(new ActionListener() {
@@ -247,12 +248,11 @@ public class ComputerGuessGame extends JPanel{
         		//lblMyGuess.setText("MyGuess:");
 				//lblGuessNum.setText(Integer.toString(guess));
 				guessCount = 0;
-				guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
+				guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times  ");
 
 				repaint();
 		}	
-		});
-		
+		});	
 		
 	}
 		

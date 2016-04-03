@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -29,12 +32,14 @@ public class KidsGuessGame extends JPanel{
 	private int high;
 	private int low;
 	private int chosenNum;
+	private int guessCount;
 	
 	private JTextField textField_1;
 	private JButton btnGuess;
 	private JButton reset;
 	private JLabel instructions;
 	private JLabel instructions_2;
+	private JLabel guessCounter;
 	
 	private JPanel panel_0;
 	private JPanel panel_1;
@@ -47,6 +52,8 @@ public class KidsGuessGame extends JPanel{
 	public KidsGuessGame(){
 		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
+		guessCount = 0;
 		
 		//panel with instructions
 		panel_0 = new JPanel();
@@ -63,7 +70,7 @@ public class KidsGuessGame extends JPanel{
 		//create a list of labels
 		numberLine = new ArrayList();
 		for (int i = 0; i < 20; i++){
-			final Superhero Superhero_1 = new Superhero( i, "imagefilename.jpeg" );
+			final Superhero Superhero_1 = new Superhero( i, "src/batman.png" );
 			Superhero_1.addActionListener(new ActionListener() {	
 				public void actionPerformed(ActionEvent e) {
 					binary_search( Superhero_1.getStength() );
@@ -79,16 +86,19 @@ public class KidsGuessGame extends JPanel{
 		panel_2 = new JPanel();
 		add(panel_2);
 		
+		/*
 		//creates text field to input number to highlight from
 		textField_1 = new JTextField();
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
+		*/
 		
 		//set initial variables
 		chosenNum = (int)(Math.random()*numberLine.size());
 		low = 0;
 		high = numberLine.size() -1 ;
 		
+		/*
 		//button for user to make guess after inputing muber into text box
 		btnGuess = new JButton("Guess");
 		panel_2.add(btnGuess);
@@ -128,13 +138,18 @@ public class KidsGuessGame extends JPanel{
 				
 			}
 		});
+		*/
 		
 		instructions_2 = new JLabel("");
 		panel_2.add(instructions_2);
 		
 		//panel for restart button
 		panel_3 = new JPanel();
+		guessCounter = new JLabel();
+		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 		add(panel_3);
+		panel_3.add(guessCounter);
+
 		reset = new JButton("Reset");
 		panel_3.add(reset);
 		reset.addActionListener(new ActionListener() {
@@ -143,6 +158,8 @@ public class KidsGuessGame extends JPanel{
 				chosenNum = (int)(Math.random()*numberLine.size());
 				low = 0;
 				high = numberLine.size() -1 ;	
+				guessCount = 0;
+				guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 				repaint();
 		}
 		});
@@ -151,11 +168,23 @@ public class KidsGuessGame extends JPanel{
 
 	
 	public void binary_search(int guess){
+		guessCount += 1;
+		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 		
-		if (guess == chosenNum){
-			JOptionPane.showMessageDialog(null,"Good job you guessed the number");
-			((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
+		if((guess<low) || (guess> high)){
+			instructions_2.setText("this number has been removed from the range");
+			//JOptionPane.showMessageDialog(null,"this number has been removed from the range");
+			//textField_1.setText("");
+		}
+		else if (guess == chosenNum){
+			//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
 			//add something later about playing again
+			Icon im = new ImageIcon("src/batman_o.png");
+			((Superhero) numberLine.get(guess)).setIcon(im);
+			JOptionPane.showMessageDialog(null,"Good job you guessed the number in " + Integer.toString(guessCount)+ " guesses!" );
+
+
+
 		}
 		//child's guess less than the number the computer chose
 		else if (guess < chosenNum && guess>=low){
@@ -173,21 +202,25 @@ public class KidsGuessGame extends JPanel{
 					+ "<br>Guess a number that is still black</html>");
 		}
 		
-		
 	}
 	
 	
 	//hilights number line, either all numbers below of above guess
 	public void highlight(int guess, boolean lowHigh, ArrayList numberLine){
+		
+		Icon im = new ImageIcon("src/batman_x.png");
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
 			for (int i = guess; i<numberLine.size() ; i++){
-				((JComponent)numberLine.get(i)).setForeground(Color.RED);
+				((Superhero) numberLine.get(i)).setIcon(im);
+				//((JComponent)numberLine.get(i)).setForeground(Color.RED);
 			}	 
 		}
 		else{
 			for (int i = 0; i<=guess ; i++){
-				((JComponent)numberLine.get(i)).setForeground(Color.RED);
+				//((JComponent)numberLine.get(i)).setForeground(Color.RED);
+				((Superhero) numberLine.get(i)).setIcon(im);
+
 			}
 		}
 		repaint();
@@ -196,8 +229,13 @@ public class KidsGuessGame extends JPanel{
 	
 	//sets numberline back to black
 	public void dehighlight(ArrayList numberLine) {
+		Icon im = new ImageIcon("src/batman.png");
 		for (int i = 0; i<numberLine.size(); i++) {
-			((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
+			//set everything back to BATMAN
+			//((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
+			//Icon im = new ImageIcon("src/batman.png");
+			((Superhero) numberLine.get(i)).setIcon(im);
+
 		}
 	}
 	

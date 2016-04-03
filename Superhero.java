@@ -3,6 +3,7 @@ package example1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Superhero extends JButton{
@@ -15,6 +16,9 @@ public class Superhero extends JButton{
 		this.strength = s;
 		this.image = image;
 		
+		ImageIcon im = new ImageIcon(image);
+		this.setIcon(im);
+		
 		/*
 		this.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
@@ -22,13 +26,18 @@ public class Superhero extends JButton{
 				
 			}
 		});
-		*/
-				
+		*/			
 		
 	}
 	
 	public int getStength(){
 		return strength;
+	}
+	
+	public void setImage(String im){
+		ImageIcon img = new ImageIcon(im);
+		setIcon(img);
+
 	}
 	
 	

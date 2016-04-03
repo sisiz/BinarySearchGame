@@ -94,7 +94,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		panel_holding2buttons.add(btnInstructions);
 		
 		//creates button to go back to the Start Menu
-		back = new JButton("Back to Start Menu");
+		back = new JButton("Back to Start Screen");
 		panel_holding2buttons.add(back);
 		
 		//creates Kids Guess Mode panel
@@ -114,10 +114,16 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 		//creates label for the image holder
 		imageholder = new JLabel();
+		
 		//creates an image icon for the binary search image
 		ImageIcon startscreen = new ImageIcon("src/startscreen.png");
+		
+		//creates image icon for the binarysearch image]
+		ImageIcon binarysearch = new ImageIcon("src/binarysearchstartscreen.png");
+		
 		//sets the image icon onto the imageholder label
 		imageholder.setIcon(startscreen);
+		
 		//adds the imageholder label & image to panel_imageholder
 		panel_imageholder.add(imageholder);
 	
@@ -134,8 +140,6 @@ public class TabbedIntegratedScreens extends JFrame {
 			}});
 		btnInstructions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//change start screen image to binarysearch image]
-				ImageIcon binarysearch = new ImageIcon("src/binarysearchstartscreen.png");
 				//sets the binarysearch image onto the imageholder
 				imageholder.setIcon(binarysearch);
 			}});

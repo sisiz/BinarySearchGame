@@ -56,8 +56,8 @@ public class KidsGuessGame extends JPanel{
 		//panel with instructions
 		panel_0 = new JPanel();
 		add(panel_0);
-		instructions = new JLabel("<html>The computer has chosen a number."
-				+ "<br> Enter your guess for what that number is:<</html>");
+		instructions = new JLabel("<html>The computer has chosen a superhero."
+				+ "<br> Guess which one the computer chose:<</html>");
 		panel_0.add(instructions);
 
 		
@@ -170,7 +170,7 @@ public class KidsGuessGame extends JPanel{
 		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 		
 		if((guess<low) || (guess> high)){
-			instructions_2.setText("this number has been removed from the range");
+			instructions_2.setText("this superhero has been removed from the range");
 			//JOptionPane.showMessageDialog(null,"this number has been removed from the range");
 			//textField_1.setText("");
 		}
@@ -179,7 +179,7 @@ public class KidsGuessGame extends JPanel{
 			//add something later about playing again
 			Icon im = new ImageIcon("src/batman_o.png");
 			((Superhero) numberLine.get(guess)).setIcon(im);
-			JOptionPane.showMessageDialog(null,"Good job you guessed the number in " + Integer.toString(guessCount)+ " guesses!" );
+			JOptionPane.showMessageDialog(null,"Good job you found the superhero in" + Integer.toString(guessCount)+ " guesses!" );
 
 
 
@@ -188,16 +188,16 @@ public class KidsGuessGame extends JPanel{
 		else if (guess < chosenNum && guess>=low){
 			highlight(guess,false, numberLine);
 			low = guess;
-			instructions_2.setText("<html>The red numbers have been removed from the range"
-					+ "<br>Guess a number that is still black</html>");
+			instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
+					+ "<br>Guess a superhero that is not crossed out</html>");
 			
 		}
 		//child's guess is greater than the number the computer chose
 		else if (guess > chosenNum && guess<=high){
 			highlight(guess,true, numberLine);
 			high = guess;
-			instructions_2.setText("<html>The red numbers have been removed from the range"
-					+ "<br>Guess a number that is still black</html>");
+			instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
+					+ "<br>Guess a superhero that is not crossed out</html>");
 		}
 		
 	}

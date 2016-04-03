@@ -41,10 +41,12 @@ public class TabbedIntegratedScreens extends JFrame {
 	private KidsGuessGame panel;
 	private JTabbedPane tabbedPane;
 	private ComputerGuessGame panel_1;
-	private JPanel panel_binarysearchintro;
-	private JLabel binarysearchintro;
+	private JPanel panel_imageholder;
 	private JPanel panel_holding2buttons;
-	private ImageIcon binarysearchintroimage;
+	private JPanel ComputerGuessModeScreen1;
+	private JButton btnTest;
+	private JLabel imageholder;
+	private JButton back;
 	
 	public TabbedIntegratedScreens() {
 		//initiates background template
@@ -72,6 +74,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		JSplitPane splitPane = new JSplitPane();
 		//adds the holding2buttons panel to the center section of panel_0, the start screen panel
 		panel_0.add(panel_holding2buttons, BorderLayout.CENTER);
+		
 		//adds the split panel to the holding2buttons panel
 		panel_holding2buttons.add(splitPane);
 		
@@ -85,6 +88,15 @@ public class TabbedIntegratedScreens extends JFrame {
 		//puts button in right pane that was previously split
 		splitPane.setRightComponent(btnNewButton_1); 
 		
+		//creates button for Instructions
+		JButton btnInstructions = new JButton("What's Binary Search?");
+		//adds the instructions button to the panel_holding2buttons
+		panel_holding2buttons.add(btnInstructions);
+		
+		//creates button to go back to the Start Menu
+		back = new JButton("Back to Start Menu");
+		panel_holding2buttons.add(back);
+		
 		//creates Kids Guess Mode panel
 		panel = new KidsGuessGame(); 
 		//creates Kids Guess Mode tab
@@ -95,20 +107,20 @@ public class TabbedIntegratedScreens extends JFrame {
 		//creates Computer Guess Mode tab
 		tabbedPane.addTab("Computer Game", null, panel_1, null);
 		
-		//creates the panel holding the binary search intro
-		JPanel panel_binarysearchintro = new JPanel();
-		//adds the panel holding the binary search intro to the north section of panel_0, the start screen panel
-		panel_0.add(panel_binarysearchintro, BorderLayout.NORTH);
+		//creates the panel holding the image
+		JPanel panel_imageholder = new JPanel();
+		//adds the panel holding the image to the north section of panel_0, the start screen panel
+		panel_0.add(panel_imageholder, BorderLayout.NORTH);
 		
-		//creates label for the binary search intro image
-		binarysearchintro = new JLabel();
-		//creates an image icon for the binary search intro image
-		ImageIcon binarysearchintroimage = new ImageIcon("src/binarysearchstartscreen.png");
-		//sets the image icon onto the binarysearchintro label
-		binarysearchintro.setIcon(binarysearchintroimage);
-		//adds the binarysearchintro label & image to panel_binarysearchintro
-		panel_binarysearchintro.add(binarysearchintro);
-		
+		//creates label for the image holder
+		imageholder = new JLabel();
+		//creates an image icon for the binary search image
+		ImageIcon startscreen = new ImageIcon("src/startscreen.png");
+		//sets the image icon onto the imageholder label
+		imageholder.setIcon(startscreen);
+		//adds the imageholder label & image to panel_imageholder
+		panel_imageholder.add(imageholder);
+	
 		//actions for the buttons
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,9 +131,21 @@ public class TabbedIntegratedScreens extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//switch tab to Computer Guess Mode tab
 				tabbedPane.setSelectedComponent(panel_1); 
-			}
-		}
-		);
+			}});
+		btnInstructions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//change start screen image to binarysearch image]
+				ImageIcon binarysearch = new ImageIcon("src/binarysearch.png");
+				//sets the binarysearch image onto the imageholder
+				imageholder.setIcon(binarysearch);
+			}});
+		back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//sets the startscreen image onto the imageholder
+				imageholder.setIcon(startscreen);
+			}});
+		
+		
 	}
 
 }

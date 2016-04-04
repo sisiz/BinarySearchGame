@@ -43,10 +43,12 @@ public class TabbedIntegratedScreens extends JFrame {
 	private ComputerGuessGame panel_1;
 	private JPanel panel_imageholder;
 	private JPanel panel_holding2buttons;
-	private JPanel ComputerGuessModeScreen1;
+	private JPanel panel_KidsGuessModeIntro;
 	private JButton btnTest;
 	private JLabel imageholder;
 	private JButton back;
+	private JButton KidsGuessMode;
+
 	
 	public TabbedIntegratedScreens() {
 		//initiates background template
@@ -93,10 +95,6 @@ public class TabbedIntegratedScreens extends JFrame {
 		//adds the instructions button to the panel_holding2buttons
 		panel_holding2buttons.add(btnInstructions);
 		
-		//creates button to go back to the Start Menu
-		back = new JButton("Back to Start Screen");
-		panel_holding2buttons.add(back);
-		
 		//creates Kids Guess Mode panel
 		panel = new KidsGuessGame(); 
 		//creates Kids Guess Mode tab
@@ -126,13 +124,17 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 		//adds the imageholder label & image to panel_imageholder
 		panel_imageholder.add(imageholder);
-	
+		
+		//creates button to go back to the Start Menu
+		back = new JButton("Back to Start Screen");
+		
+
 		//actions for the buttons
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch tab to Kids Guess Mode tab
 				tabbedPane.setSelectedComponent(panel); 
-			}});
+			}});  
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch tab to Computer Guess Mode tab
@@ -142,13 +144,18 @@ public class TabbedIntegratedScreens extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//sets the binarysearch image onto the imageholder
 				imageholder.setIcon(binarysearch);
+				//adds back button to panel holding 2 buttons
+				panel_holding2buttons.add(back);
+				repaint();
 			}});
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//sets the startscreen image onto the imageholder
 				imageholder.setIcon(startscreen);
+				panel_holding2buttons.remove(back);
+				repaint();
 			}});
-		
+	
 		
 	}
 

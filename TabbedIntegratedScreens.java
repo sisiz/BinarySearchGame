@@ -128,18 +128,88 @@ public class TabbedIntegratedScreens extends JFrame {
 		//creates button to go back to the Start Menu
 		back = new JButton("Back to Start Screen");
 		
+		//creates button to go to storyline2
+		JButton next1 = new JButton("Next");
+		
+		//creates button to go to storyline2 for CPU
+		JButton next1CPU = new JButton("Next");
+		
+		//creates button to go to Kids Mode
+		JButton toKidsMode = new JButton("Start!");
+		
+		//creates button to go to CPU Mode
+		JButton toCPUMode = new JButton("Start!");
+		
+		//Storyline Images
+		
+		//creates image icon for the 1st storyline image]
+		ImageIcon storyline1 = new ImageIcon("src/storyline1.png");
+		//creates image icon for the 2nd storyline image]
+		ImageIcon storyline2 = new ImageIcon("src/storyline2.png");
+		//creates image icon for the 2nd storyline image for the CPU Guess Mode]
+		ImageIcon storyline2CPU = new ImageIcon("src/storyline2CPU.png");
+
 
 		//actions for the buttons
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(storyline1);
+				panel_holding2buttons.add(next1);
+				panel_holding2buttons.add(back);
+				panel_holding2buttons.remove(btnInstructions);
+				splitPane.remove(btnNewButton_1);
+				splitPane.remove(btnNewButton);
+				repaint();
+			}});  
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(storyline1);
+				panel_holding2buttons.add(next1CPU);
+				panel_holding2buttons.add(back);
+				panel_holding2buttons.remove(btnInstructions);
+				splitPane.remove(btnNewButton_1);
+				splitPane.remove(btnNewButton);
+				repaint();
+			}});
+		next1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(storyline2);
+				panel_holding2buttons.remove(next1);
+				panel_holding2buttons.add(toKidsMode);
+				repaint();
+			}});  
+		next1CPU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(storyline2CPU);
+				panel_holding2buttons.remove(next1CPU);
+				panel_holding2buttons.add(toCPUMode);
+				repaint();
+			}});  
+		toKidsMode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				//switch tab to Kids Guess Mode tab
 				tabbedPane.setSelectedComponent(panel); 
 			}});  
+		toCPUMode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch tab to Computer Guess Mode tab
+				tabbedPane.setSelectedComponent(panel_1); 
+			}});  
+		/*btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch tab to Kids Guess Mode tab
+				tabbedPane.setSelectedComponent(panel); 
+			}});  */
+		/*
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch tab to Computer Guess Mode tab
 				tabbedPane.setSelectedComponent(panel_1); 
-			}});
+			}}); */
 		btnInstructions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//sets the binarysearch image onto the imageholder
@@ -152,9 +222,19 @@ public class TabbedIntegratedScreens extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//sets the startscreen image onto the imageholder
 				imageholder.setIcon(startscreen);
+				panel_holding2buttons.add(btnInstructions);
+				splitPane.setRightComponent(btnNewButton_1); 
+				splitPane.setLeftComponent(btnNewButton); 
 				panel_holding2buttons.remove(back);
+				panel_holding2buttons.remove(next1);
+				panel_holding2buttons.remove(next1CPU);
+				panel_holding2buttons.remove(toKidsMode);
+				panel_holding2buttons.remove(toCPUMode);
 				repaint();
 			}});
+
+
+		
 	
 		
 	}

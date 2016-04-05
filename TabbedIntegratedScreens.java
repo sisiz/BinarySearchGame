@@ -48,7 +48,24 @@ public class TabbedIntegratedScreens extends JFrame {
 	private JLabel imageholder;
 	private JButton back;
 	private JButton KidsGuessMode;
-
+	
+	private JSplitPane splitPane;
+	
+	private ImageIcon startscreen;
+	private ImageIcon storyline1;
+	private ImageIcon storyline2;
+	private ImageIcon storyline2CPU;
+	
+	private JButton btnNewButton_1;
+	private ImageIcon binarysearch;
+	private JButton btnInstructions;
+	private JButton btnNewButton;
+	private JButton next1;
+	private JButton next1CPU;
+	private JButton toKidsMode;
+	private JButton toCPUMode;
+	
+	
 	
 	public TabbedIntegratedScreens() {
 		//initiates background template
@@ -71,9 +88,9 @@ public class TabbedIntegratedScreens extends JFrame {
 		panel_0.setLayout(new BorderLayout(0, 0));
 		
 		//creates panel that holds the 2 buttons
-		JPanel panel_holding2buttons = new JPanel();
+		panel_holding2buttons = new JPanel();
 		//splits the holding2buttons panel into 2 for the Kids Guess Mode button & the Computer Guess Mode button
-		JSplitPane splitPane = new JSplitPane();
+		splitPane = new JSplitPane();
 		//adds the holding2buttons panel to the center section of panel_0, the start screen panel
 		panel_0.add(panel_holding2buttons, BorderLayout.CENTER);
 		
@@ -81,17 +98,17 @@ public class TabbedIntegratedScreens extends JFrame {
 		panel_holding2buttons.add(splitPane);
 		
 		//creates button for Kids Guess Mode
-		JButton btnNewButton = new JButton("Kids Guess Mode");
+		btnNewButton = new JButton("Kids Guess Mode");
 		//puts button in left pane that was previously split
 		splitPane.setLeftComponent(btnNewButton); 
 		
 		//creates button for Computer Guess Mode
-		JButton btnNewButton_1 = new JButton("Computer Guess Mode");
+		btnNewButton_1 = new JButton("Computer Guess Mode");
 		//puts button in right pane that was previously split
 		splitPane.setRightComponent(btnNewButton_1); 
 		
 		//creates button for Instructions
-		JButton btnInstructions = new JButton("What's Binary Search?");
+		btnInstructions = new JButton("What's Binary Search?");
 		//adds the instructions button to the panel_holding2buttons
 		panel_holding2buttons.add(btnInstructions);
 		
@@ -114,10 +131,10 @@ public class TabbedIntegratedScreens extends JFrame {
 		imageholder = new JLabel();
 		
 		//creates an image icon for the binary search image
-		ImageIcon startscreen = new ImageIcon("src/startscreen.png");
+		startscreen = new ImageIcon("src/startscreen.png");
 		
 		//creates image icon for the binarysearch image]
-		ImageIcon binarysearch = new ImageIcon("src/binarysearchstartscreen.png");
+		binarysearch = new ImageIcon("src/binarysearchstartscreen.png");
 		
 		//sets the image icon onto the imageholder label
 		imageholder.setIcon(startscreen);
@@ -129,25 +146,25 @@ public class TabbedIntegratedScreens extends JFrame {
 		back = new JButton("Back to Start Screen");
 		
 		//creates button to go to storyline2
-		JButton next1 = new JButton("Next");
+		next1 = new JButton("Next");
 		
 		//creates button to go to storyline2 for CPU
-		JButton next1CPU = new JButton("Next");
+		next1CPU = new JButton("Next");
 		
 		//creates button to go to Kids Mode
-		JButton toKidsMode = new JButton("Start!");
+		toKidsMode = new JButton("Start!");
 		
 		//creates button to go to CPU Mode
-		JButton toCPUMode = new JButton("Start!");
+		toCPUMode = new JButton("Start!");
 		
 		//Storyline Images
 		
 		//creates image icon for the 1st storyline image]
-		ImageIcon storyline1 = new ImageIcon("src/storyline1.png");
+		storyline1 = new ImageIcon("src/storyline1.png");
 		//creates image icon for the 2nd storyline image]
-		ImageIcon storyline2 = new ImageIcon("src/storyline2.png");
+		storyline2 = new ImageIcon("src/storyline2.png");
 		//creates image icon for the 2nd storyline image for the CPU Guess Mode]
-		ImageIcon storyline2CPU = new ImageIcon("src/storyline2CPU.png");
+		storyline2CPU = new ImageIcon("src/storyline2CPU.png");
 
 
 		//actions for the buttons

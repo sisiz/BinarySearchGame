@@ -31,6 +31,7 @@ public class KidsGuessGame extends JPanel{
 	private int low;
 	private int chosenNum;
 	private int guessCount;
+	private boolean found;
 	
 	private JTextField textField_1;
 	private JButton btnGuess;
@@ -52,6 +53,7 @@ public class KidsGuessGame extends JPanel{
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		guessCount = 0;
+		found = false;
 		
 		//panel with instructions
 		panel_0 = new JPanel();
@@ -130,7 +132,7 @@ public class KidsGuessGame extends JPanel{
 						
 				}catch (Exception e1) {
 					//create a pop up that says input not an integer
-					JOptionPane.showMessageDialog(null,"you need to input a integer");
+					JOptionPane.showMessageDialog(null," need to input a integer");
 					textField_1.setText("");
 				}	
 				
@@ -166,40 +168,45 @@ public class KidsGuessGame extends JPanel{
 
 	
 	public void binary_search(int guess){
-		guessCount += 1;
-		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
-		
-		if((guess<low) || (guess> high)){
-			instructions_2.setText("this superhero has been removed from the range");
-			//JOptionPane.showMessageDialog(null,"this number has been removed from the range");
-			//textField_1.setText("");
-		}
-		else if (guess == chosenNum){
-			//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
-			//add something later about playing again
-			Icon im = new ImageIcon("src/batman_o.png");
-			((Superhero) numberLine.get(guess)).setIcon(im);
-			JOptionPane.showMessageDialog(null,"Good job you found the superhero in" + Integer.toString(guessCount)+ " guesses!" );
-
-
-
-		}
-		//child's guess less than the number the computer chose
-		else if (guess < chosenNum && guess>=low){
-			highlight(guess,false, numberLine);
-			low = guess;
-			instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
-					+ "<br>Guess a superhero that is not crossed out</html>");
+		if(found == false){
+			guessCount += 1;
+			guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 			
+			if((guess<low) || (guess> high)){
+				instructions_2.setText("this superhero has been removed from the range");
+				//JOptionPane.showMessageDialog(null,"this number has been removed from the range");
+				//textField_1.setText("");
+			}
+			else if (guess == chosenNum){
+				//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
+				//add something later about playing again
+				Icon im = new ImageIcon("src/batman_o.png");
+				((Superhero) numberLine.get(guess)).setIcon(im);
+				JOptionPane.showMessageDialog(null,"Good job you found the superhero in " + Integer.toString(guessCount)+ " guesses!" );
+				found = true;
+	
+	
+			}
+			//child's guess less than the number the computer chose
+			else if (guess < chosenNum && guess>=low){
+				highlight(guess,false, numberLine);
+				low = guess;
+				instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
+						+ "<br>Guess a superhero that is not crossed out</html>");
+				
+			}
+			//child's guess is greater than the number the computer chose
+			else if (guess > chosenNum && guess<=high){
+				highlight(guess,true, numberLine);
+				high = guess;
+				instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
+						+ "<br>Guess a superhero that is not crossed out</html>");
+			}
 		}
-		//child's guess is greater than the number the computer chose
-		else if (guess > chosenNum && guess<=high){
-			highlight(guess,true, numberLine);
-			high = guess;
-			instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
-					+ "<br>Guess a superhero that is not crossed out</html>");
+		else{
+			JOptionPane.showMessageDialog(null,"You have already found the superhero! \n You can restart the game by clicking on the reset button" );
+
 		}
-		
 	}
 	
 	

@@ -30,6 +30,7 @@ public class ComputerGuessGame extends JPanel{
 	public int low;
 	public int high;
 	private int guessCount;
+	private boolean found;
 	
 	private JButton reset;
 	private JLabel lblGuessNum;
@@ -107,7 +108,7 @@ public class ComputerGuessGame extends JPanel{
 	*/
 	public ComputerGuessGame() {
 		
-		
+		found = false;
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		guessCount = 0;
@@ -178,19 +179,23 @@ public class ComputerGuessGame extends JPanel{
 		panel_3.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				highlight(guess, false, numberLine);
-				binaryGuess(data, -1);
-				
-				guessCount += 1;
-				guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
-				
-				//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
-				//lblGuessNum.setText(Integer.toString(guess));
-				//lblGuessNum.setText("How about this guess:" + guess);
-				ImageIcon batman = new ImageIcon("src/batman_g.png");
-				numberLine.get(guess).setIcon(batman);
-				
+				if(found == false){
+					highlight(guess, false, numberLine);
+					binaryGuess(data, -1);
+					
+					guessCount += 1;
+					guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
+					
+					//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
+					//lblGuessNum.setText(Integer.toString(guess));
+					//lblGuessNum.setText("How about this guess:" + guess);
+					ImageIcon batman = new ImageIcon("src/batman_g.png");
+					numberLine.get(guess).setIcon(batman);
+				}
+				else{
 
+					JOptionPane.showMessageDialog(null,"You have already found the superhero! \n You can restart the game by clicking on the reset button" );
+				}
 			}
 		});
 		
@@ -199,11 +204,18 @@ public class ComputerGuessGame extends JPanel{
 		panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(found == false){
 				Icon im = new ImageIcon("src/batman_o.png");
-				((JLabel) numberLine.get(guess)).setIcon(im);
-				
-				guessCount += 1;
-				guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
+					((JLabel) numberLine.get(guess)).setIcon(im);
+					
+					guessCount += 1;
+					guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
+					found = true;
+				}
+				else{
+					JOptionPane.showMessageDialog(null,"You have already found the superhero! \n You can restart the game by clicking on the reset button" );
+
+				}
 				
 				//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
 				//JOptionPane.showMessageDialog(null,"Your number is guessed correctly. Mind read successful.");
@@ -218,18 +230,22 @@ public class ComputerGuessGame extends JPanel{
 		//Pass the "too high" info to binaryGuess and update the display
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				highlight(guess, true, numberLine);
-				binaryGuess(data, 1);
-				
-				guessCount += 1;
-				guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
-				
-				//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
-				//lblGuessNum.setText(Integer.toString(guess));
-				//lblGuessNum.setText("How about this guess:" + guess);
-				ImageIcon batman = new ImageIcon("src/batman_g.png");
-				numberLine.get(guess).setIcon(batman);
-
+				if(found == false){
+					highlight(guess, true, numberLine);
+					binaryGuess(data, 1);
+					
+					guessCount += 1;
+					guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
+					
+					//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
+					//lblGuessNum.setText(Integer.toString(guess));
+					//lblGuessNum.setText("How about this guess:" + guess);
+					ImageIcon batman = new ImageIcon("src/batman_g.png");
+					numberLine.get(guess).setIcon(batman);
+				}
+				else{
+					JOptionPane.showMessageDialog(null,"You have already found the superhero! \n You can restart the game by clicking on the reset button" );
+				}
 			}
 		});
 		
@@ -249,7 +265,7 @@ public class ComputerGuessGame extends JPanel{
 				//lblGuessNum.setText(Integer.toString(guess));
 				guessCount = 0;
 				guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times  ");
-
+				found = false;
 				repaint();
 		}	
 		});	

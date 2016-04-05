@@ -172,8 +172,8 @@ public class TabbedIntegratedScreens extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
 				imageholder.setIcon(storyline1);
-				panel_holding2buttons.add(next1);
 				panel_holding2buttons.add(back);
+				panel_holding2buttons.add(next1);
 				panel_holding2buttons.remove(btnInstructions);
 				splitPane.remove(btnNewButton_1);
 				splitPane.remove(btnNewButton);
@@ -182,9 +182,9 @@ public class TabbedIntegratedScreens extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
-				imageholder.setIcon(storyline1);
-				panel_holding2buttons.add(next1CPU);
+				imageholder.setIcon(storyline1);				
 				panel_holding2buttons.add(back);
+				panel_holding2buttons.add(next1CPU);
 				panel_holding2buttons.remove(btnInstructions);
 				splitPane.remove(btnNewButton_1);
 				splitPane.remove(btnNewButton);

@@ -1,6 +1,7 @@
 package example1;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -55,11 +56,11 @@ public class TabbedIntegratedScreens extends JFrame {
 	private ImageIcon storyline1;
 	private ImageIcon storyline2;
 	private ImageIcon storyline3;
-	private ImageIcon storyline4;
+	private ImageIcon storyline4;		//not being used now
 	
 	private ImageIcon storyline2CPU;
 	private ImageIcon storyline3CPU;
-	private ImageIcon storyline4CPU;
+	private ImageIcon storyline4CPU;	//not being used now
 	
 	private JButton btnNewButton_1;
 	private ImageIcon binarysearch;
@@ -71,16 +72,16 @@ public class TabbedIntegratedScreens extends JFrame {
 	
 	private JButton next1;
 	private JButton next2;
-	private JButton next3;
+	private JButton next3;		//not being used now
 	private JButton next1CPU;
 	private JButton next2CPU;
-	private JButton next3CPU;
+	private JButton next3CPU;	//not being used now
 	
 	
 	public TabbedIntegratedScreens() {
 		//initiates background template
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 400);
+		setBounds(100, 100, 15000, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -158,11 +159,11 @@ public class TabbedIntegratedScreens extends JFrame {
 		//creates button to go to storyline2
 		next1 = new JButton("Next");
 		next2 = new JButton("Next");
-		next3 = new JButton("Next");
+		next3 = new JButton("Next");	//not being used now
 		
 		//creates button to go to storyline2 for CPU
 		next1CPU = new JButton("Next");
-		next2CPU = new JButton("Next");
+		next2CPU = new JButton("Next");	//not being used now
 		next3CPU = new JButton("Next");
 		
 		//creates button to go to Kids Mode
@@ -186,9 +187,9 @@ public class TabbedIntegratedScreens extends JFrame {
 		//creates image icon for the 2nd storyline image for the CPU Guess Mode]
 		storyline2CPU = new ImageIcon("src/storyline2CPU.png");
 		//creates image icon for the 2nd storyline image for the CPU Guess Mode]	 PATRICIA, here is where to put in the 3rd story line picture
-		storyline3CPU = new ImageIcon("src/storyline3CPU.png");
+		storyline3CPU = new ImageIcon("src/CPUscreen2.png");
 		//creates image icon for the 2nd storyline image for the CPU Guess Mode]
-		//storyline4CPU = new ImageIcon("src/storyline4CPU.png");
+		storyline4CPU = new ImageIcon("src/CPUscreen3.png");
 		
 
 		//actions for the buttons
@@ -220,17 +221,17 @@ public class TabbedIntegratedScreens extends JFrame {
 				//switch to storyline1 image
 				imageholder.setIcon(storyline2);
 				panel_holding2buttons.remove(next1);
-				panel_holding2buttons.add(next2);
+				panel_holding2buttons.add(toKidsMode);
 				repaint();
 			}});  
-		next2.addActionListener(new ActionListener() {
+		/*next2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
 				imageholder.setIcon(storyline3);
 				panel_holding2buttons.remove(next2);
 				panel_holding2buttons.add(toKidsMode);	//if adding another screen switch add next 3 instead
 				repaint();
-			}}); 
+			}}); */
 		/*Didn't know how many story line screens you want, you can uncomment this if you need more
 		 next3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -254,11 +255,11 @@ public class TabbedIntegratedScreens extends JFrame {
 				//switch to storyline1 image
 				imageholder.setIcon(storyline3CPU);
 				panel_holding2buttons.remove(next2CPU);
-				panel_holding2buttons.add(toCPUMode);
+				panel_holding2buttons.add(next3CPU);
 				repaint();
-			}});  
-		/*Didn't know how many story line screens you want, you can uncomment this if you need more
-		 next3CPU.addActionListener(new ActionListener() {
+			}}); 
+		//Didn't know how many story line screens you want, you can uncomment this if you need more
+		next3CPU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
 				imageholder.setIcon(storyline4CPU);
@@ -266,7 +267,7 @@ public class TabbedIntegratedScreens extends JFrame {
 				panel_holding2buttons.add(toCPUMode);
 				repaint();
 			}});  
-			*/
+			
 		
 		toKidsMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

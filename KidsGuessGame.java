@@ -117,8 +117,8 @@ public class KidsGuessGame extends JPanel{
 		dehighlight(numberLine);
 		found = false;
 		chosenNum = (int)(Math.random()*numberLine.size());
-		low = 0;
-		high = numberLine.size() -1 ;	
+		low = -1;
+		high = numberLine.size()  ;	
 		guessCount = 0;
 		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 		repaint();
@@ -127,15 +127,17 @@ public class KidsGuessGame extends JPanel{
 	
 	public void binary_search(int guess){
 		if(found == false){
-			guessCount += 1;
-			guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
+			//guessCount += 1;
 			
-			if((guess<low) || (guess> high)){
+			if((guess<=low) || (guess>= high)){
 				instructions_2.setText("this superhero has been removed from the range");
 				//JOptionPane.showMessageDialog(null,"this number has been removed from the range");
 				//textField_1.setText("");
+				//guessCount -= 1;
+				repaint();
 			}
 			else if (guess == chosenNum){
+				guessCount += 1;
 				//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
 				//add something later about playing again
 				Icon im = new ImageIcon("src/bisthbee_o.png");
@@ -146,7 +148,8 @@ public class KidsGuessGame extends JPanel{
 	
 			}
 			//child's guess less than the number the computer chose
-			else if (guess < chosenNum && guess>=low){
+			else if (guess < chosenNum && guess>low){
+				guessCount += 1;
 				highlight(guess,false, numberLine);
 				low = guess;
 				instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
@@ -154,12 +157,15 @@ public class KidsGuessGame extends JPanel{
 				
 			}
 			//child's guess is greater than the number the computer chose
-			else if (guess > chosenNum && guess<=high){
+			else if (guess > chosenNum && guess<high){
+				guessCount += 1;
 				highlight(guess,true, numberLine);
 				high = guess;
 				instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
 						+ "<br>Guess a superhero that is not crossed out</html>");
 			}
+			guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
+
 		}
 		else{
 			JOptionPane.showMessageDialog(null,"You have already found the superhero! \n You can restart the game by clicking on the reset button" );

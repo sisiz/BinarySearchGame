@@ -116,8 +116,10 @@ public class ComputerGuessGame extends JPanel{
 	*/
 	public ComputerGuessGame() {
 		
-		
+		//setLayout(null);
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		//this.setBackground(Color.WHITE);
+
 		
 		found = false;
 		guessCount = 0;
@@ -166,8 +168,7 @@ public class ComputerGuessGame extends JPanel{
 		numberLine = new ArrayList<JLabel>();
 		
 		for(int i = 0; i<x; i++)
-		{
-			
+		{	
 			data[i] = i;
 			JLabel lblNew = new JLabel();
 			ImageIcon bisthbee = new ImageIcon("src/bisthbee.png");
@@ -175,7 +176,6 @@ public class ComputerGuessGame extends JPanel{
 			lblNew.setIcon(bisthbee);
 			//adds the binarysearchintro label & image to panel_binarysearchintro
 
-			
 			panel_1.add(lblNew);
 			numberLine.add(lblNew);
 		}
@@ -212,18 +212,29 @@ public class ComputerGuessGame extends JPanel{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(found == false){
-					highlight(guess, false, numberLine);
-					binaryGuess(data, -1);
+					if (low <= high-1){
 					
-					guessCount += 1;
-					guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
-					
-					//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
-					//lblGuessNum.setText(Integer.toString(guess));
-					//lblGuessNum.setText("How about this guess:" + guess);
-					ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
-					numberLine.get(guess).setIcon(bisthbee);
-					
+						highlight(guess, false, numberLine);
+						binaryGuess(data, -1);
+						
+						guessCount += 1;
+						guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
+						
+						//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
+						//lblGuessNum.setText(Integer.toString(guess));
+						//lblGuessNum.setText("How about this guess:" + guess);
+						ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
+						numberLine.get(guess).setIcon(bisthbee);
+					}
+					else{
+						Icon im = new ImageIcon("src/bisthbee_o.png");
+						((JLabel) numberLine.get(guess)).setIcon(im);
+						found = true;
+						guessCount += 1;
+						guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
+						JOptionPane.showMessageDialog(null,"I have  found the superhero! \n You can restart the game by clicking on the reset button" );	
+
+					}
 				}
 				else{
 					JOptionPane.showMessageDialog(null,"You have already found the superhero! \n You can restart the game by clicking on the reset button" );	
@@ -242,7 +253,7 @@ public class ComputerGuessGame extends JPanel{
 					
 					guessCount += 1;
 					guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
-					
+					found = true;
 					//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
 					//JOptionPane.showMessageDialog(null,"Your number is guessed correctly. Mind read successful.");
 					//lblMyGuess.setText("Your number is guessed correctly. Mind read successful.");
@@ -261,17 +272,29 @@ public class ComputerGuessGame extends JPanel{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(found == false){
-					highlight(guess, true, numberLine);
-					binaryGuess(data, 1);
-					
-					guessCount += 1;
-					guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
-					
-					//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
-					//lblGuessNum.setText(Integer.toString(guess));
-					//lblGuessNum.setText("How about this guess:" + guess);
-					ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
-					numberLine.get(guess).setIcon(bisthbee);
+					if (low <= high-1){
+
+						highlight(guess, true, numberLine);
+						binaryGuess(data, 1);
+						
+						guessCount += 1;
+						guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
+						
+						//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
+						//lblGuessNum.setText(Integer.toString(guess));
+						//lblGuessNum.setText("How about this guess:" + guess);
+						ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
+						numberLine.get(guess).setIcon(bisthbee);
+					}
+					else{
+						found = true;
+						Icon im = new ImageIcon("src/bisthbee_o.png");
+						((JLabel) numberLine.get(guess)).setIcon(im);
+						guessCount += 1;
+						guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
+						JOptionPane.showMessageDialog(null,"I have  found the superhero! \n You can restart the game by clicking on the reset button" );	
+
+					}	
 				}
 				else{
 					JOptionPane.showMessageDialog(null,"You have already found the superhero! \n You can restart the game by clicking on the reset button" );

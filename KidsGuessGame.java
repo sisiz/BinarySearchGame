@@ -3,11 +3,17 @@ package example1;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -40,24 +46,61 @@ public class KidsGuessGame extends JPanel{
 	private JLabel instructions_2;
 	private JLabel guessCounter;
 	
+	private JPanel panel_main;
+	
 	private JPanel panel_0;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
+	private BackgroundPanel panel_4;
+	
+	private JLabel sidekick_label;
+	private JLabel sidekick_text;
 	
 	private ArrayList numberLine;
 
 	
 	public KidsGuessGame(){
 		
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setLayout(null);
+		
+		panel_main = new JPanel();
+		add(panel_main);
+		panel_main.setBounds(0,0,1400,400);
+		panel_main.setLayout(new BoxLayout(panel_main, BoxLayout.PAGE_AXIS));
+		
 		
 		guessCount = 0;
 		found = false;
 		
+		//panel with sidekisck
+		Image img4 = null;
+	    try {
+	    	img4 = ImageIO.read(new File("src/supersidekick_2.png"));}
+	    catch (IOException e){	
+	    	e.printStackTrace();
+	    }
+	    
+		panel_4 = new BackgroundPanel(img4,2);
+		add(panel_4);
+		panel_4.setBounds(800,400,500,400);
+
+
+
+		sidekick_text = new JLabel("              hello");
+		panel_4.add(sidekick_text);
+		//sidekick_text.setBounds(0, 0, 50, 50);
+		//sidekick_text = new JLabel("Hello");
+		//sidekick_text.setFont(sidekick_text.getFont().deriveFont(Font.BOLD, 48));
+		//sidekick_text.setForeground(Color.WHITE);
+		//sidekick_text.setHorizontalAlignment(JLabel.CENTER);
+		//panel_4.add(sidekick_text);
+		
+		
+		
 		//panel with instructions
 		panel_0 = new JPanel();
-		add(panel_0);
+		panel_main.add(panel_0);
 		instructions = new JLabel("<html>The computer has chosen a superhero."
 				+ "<br> Guess which one the computer chose:<</html>");
 		panel_0.add(instructions);
@@ -66,7 +109,7 @@ public class KidsGuessGame extends JPanel{
 		
 		//panel for number line
 		panel_1 = new JPanel();
-		add(panel_1);
+		panel_main.add(panel_1);
 		//create a list of labels
 		numberLine = new ArrayList();
 		for (int i = 0; i < 20; i++){
@@ -84,8 +127,8 @@ public class KidsGuessGame extends JPanel{
 		
 		//panel for user input (text box for guess, and button to guess)
 		panel_2 = new JPanel();
-		add(panel_2);
-		
+		panel_main.add(panel_2);
+
 
 		
 		//set initial variables
@@ -101,6 +144,7 @@ public class KidsGuessGame extends JPanel{
 		guessCounter = new JLabel();
 		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 		add(panel_3);
+		panel_3.setBounds(500,450,300,80);
 		panel_3.add(guessCounter);
 
 		reset = new JButton("Reset");

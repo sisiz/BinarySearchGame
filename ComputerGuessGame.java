@@ -53,24 +53,46 @@ public class ComputerGuessGame extends JPanel{
 	private ArrayList<JLabel> numberLine;
 	private ArrayList<String> Heroes;
 
-	
+		
 	
 	/*
 	Take a int of current guess, a boolean of the hign/low status and an arraylist of labels and highghts the labels of the numbers
 	that are no longer in consideration.
 	*/
 	public void highlight(int guess, boolean lowHigh, ArrayList numberLine){
-		
-		Icon im = new ImageIcon("src/bisthbee_x.png");
+		Heroes = new ArrayList<String>();
+		Heroes.add("aang");
+		Heroes.add("actual_deadpool");
+		Heroes.add("astronaut");
+		Heroes.add("batman");
+		Heroes.add("bisthbee_normal");
+		Heroes.add("capt_america");
+		Heroes.add("deadpool");
+		Heroes.add("ghost_rider");
+		Heroes.add("hellboy");
+		Heroes.add("hulk");
+		Heroes.add("ironman");
+		Heroes.add("recycle");
+		Heroes.add("spiderman");
+		Heroes.add("super_woman");
+		Heroes.add("superman");
+		Heroes.add("the_thing");
+		Heroes.add("thor");
+		Heroes.add("torch");
+		Heroes.add("wolverine");
+		Heroes.add("wonderwman");
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
 			for (int i = guess; i<numberLine.size() ; i++){
+				Icon im = new ImageIcon("src/"+Heroes.get(i)+"_x.png");
+
 				((JLabel) numberLine.get(i)).setIcon(im);
 				//((JComponent)numberLine.get(i)).setForeground(Color.RED);
 			}	 
 		}
 		else{
 			for (int i = 0; i<=guess ; i++){
+				Icon im = new ImageIcon("src/"+Heroes.get(i)+"_x.png");
 				//((JComponent)numberLine.get(i)).setForeground(Color.RED);
 				((JLabel) numberLine.get(i)).setIcon(im);
 
@@ -83,8 +105,29 @@ public class ComputerGuessGame extends JPanel{
 	Dehighlight all the labels in the given arraylist
 	*/
 	public void dehighlight(ArrayList numberLine) {
-		Icon im = new ImageIcon("src/bisthbee.png");
+		Heroes = new ArrayList<String>();
+		Heroes.add("aang");
+		Heroes.add("actual_deadpool");
+		Heroes.add("astronaut");
+		Heroes.add("batman");
+		Heroes.add("bisthbee_normal");
+		Heroes.add("capt_america");
+		Heroes.add("deadpool");
+		Heroes.add("ghost_rider");
+		Heroes.add("hellboy");
+		Heroes.add("hulk");
+		Heroes.add("ironman");
+		Heroes.add("recycle");
+		Heroes.add("spiderman");
+		Heroes.add("super_woman");
+		Heroes.add("superman");
+		Heroes.add("the_thing");
+		Heroes.add("thor");
+		Heroes.add("torch");
+		Heroes.add("wolverine");
+		Heroes.add("wonderwman");
 		for (int i = 0; i<numberLine.size(); i++) {
+			Icon im = new ImageIcon("src/" + Heroes.get(i)+".png");
 			//((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
 			((JLabel) numberLine.get(i)).setIcon(im);
 
@@ -132,33 +175,34 @@ public class ComputerGuessGame extends JPanel{
 		panel_0.add(instructions);
 
 		
+		
+		
 		panel_1 = new JPanel();
 		add(panel_1);
 		
 		
 		//different heroes
 		Heroes = new ArrayList<String>();
-		Heroes.add("aang.png");
-		Heroes.add("actual_deadpool.png");
-		Heroes.add("astronaut.png");
-		Heroes.add("batman.png");
-		Heroes.add("bisthbee.png");
-		Heroes.add("capt_america.png");
-		Heroes.add("deadpool.png");
-		Heroes.add("ghost_rider.png");
-		Heroes.add("hellboy.png");
-		Heroes.add("hulk.png");
-		Heroes.add("ironman.png");
-		Heroes.add("recycle.png");
-		Heroes.add("spiderman.png");
-		Heroes.add("super_woman.png");
-		Heroes.add("superman.png");
-		Heroes.add("the_thing.png");
-		Heroes.add("thor.png");
-		Heroes.add("torch.png");
-		Heroes.add("wolverine.png");
-		Heroes.add("wonderwman.png");
-		
+		Heroes.add("aang");
+		Heroes.add("actual_deadpool");
+		Heroes.add("astronaut");
+		Heroes.add("batman");
+		Heroes.add("bisthbee_normal");
+		Heroes.add("capt_america");
+		Heroes.add("deadpool");
+		Heroes.add("ghost_rider");
+		Heroes.add("hellboy");
+		Heroes.add("hulk");
+		Heroes.add("ironman");
+		Heroes.add("recycle");
+		Heroes.add("spiderman");
+		Heroes.add("super_woman");
+		Heroes.add("superman");
+		Heroes.add("the_thing");
+		Heroes.add("thor");
+		Heroes.add("torch");
+		Heroes.add("wolverine");
+		Heroes.add("wonderwman");
 		
 		//creating number line
 		JLabel lblNewLabel = new JLabel("");
@@ -171,7 +215,7 @@ public class ComputerGuessGame extends JPanel{
 		{	
 			data[i] = i;
 			JLabel lblNew = new JLabel();
-			ImageIcon bisthbee = new ImageIcon("src/bisthbee.png");
+			ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(i)+".png");
 			//sets the image icon onto the binarysearchintro label
 			lblNew.setIcon(bisthbee);
 			//adds the binarysearchintro label & image to panel_binarysearchintro
@@ -199,7 +243,7 @@ public class ComputerGuessGame extends JPanel{
 		high = data.length - 1;
 		guess =(low+high)/2; 
 		//lblGuessNum.setText(Integer.toString(guess));
-		ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
+		ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
 		numberLine.get(guess).setIcon(bisthbee);
 		
 		//panel for buttons
@@ -223,11 +267,11 @@ public class ComputerGuessGame extends JPanel{
 						//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
 						//lblGuessNum.setText(Integer.toString(guess));
 						//lblGuessNum.setText("How about this guess:" + guess);
-						ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
+						ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
 						numberLine.get(guess).setIcon(bisthbee);
 					}
 					else{
-						Icon im = new ImageIcon("src/bisthbee_o.png");
+						Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_o.png");
 						((JLabel) numberLine.get(guess)).setIcon(im);
 						found = true;
 						guessCount += 1;
@@ -248,7 +292,7 @@ public class ComputerGuessGame extends JPanel{
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(found == false){
-					Icon im = new ImageIcon("src/bisthbee_o.png");
+					Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
 					((JLabel) numberLine.get(guess)).setIcon(im);
 					
 					guessCount += 1;
@@ -283,12 +327,12 @@ public class ComputerGuessGame extends JPanel{
 						//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
 						//lblGuessNum.setText(Integer.toString(guess));
 						//lblGuessNum.setText("How about this guess:" + guess);
-						ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
+						ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
 						numberLine.get(guess).setIcon(bisthbee);
 					}
 					else{
 						found = true;
-						Icon im = new ImageIcon("src/bisthbee_o.png");
+						Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_o.png");
 						((JLabel) numberLine.get(guess)).setIcon(im);
 						guessCount += 1;
 						guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
@@ -323,7 +367,7 @@ public class ComputerGuessGame extends JPanel{
 		low = 0;
 		high = data.length - 1;
 		guess = (low+high)/2;
-		ImageIcon bisthbee = new ImageIcon("src/bisthbee_g.png");
+		ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
 		numberLine.get(guess).setIcon(bisthbee);
 		//lblMyGuess.setText("MyGuess:");
 		//lblGuessNum.setText(Integer.toString(guess));

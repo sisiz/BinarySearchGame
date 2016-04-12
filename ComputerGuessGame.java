@@ -3,10 +3,14 @@ package example1;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -42,6 +46,7 @@ public class ComputerGuessGame extends JPanel{
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	
+	private JPanel panel_main;
 	private JPanel panel_0;
 	private JPanel panel_1;
 	private JPanel panel_2;
@@ -53,7 +58,9 @@ public class ComputerGuessGame extends JPanel{
 	private ArrayList<JLabel> numberLine;
 	private ArrayList<String> Heroes;
 
-		
+	private JLabel sidekick_label;
+	private JLabel sidekick_text;
+	
 	
 	/*
 	Take a int of current guess, a boolean of the hign/low status and an arraylist of labels and highghts the labels of the numbers
@@ -159,8 +166,16 @@ public class ComputerGuessGame extends JPanel{
 	*/
 	public ComputerGuessGame() {
 		
-		//setLayout(null);
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		setLayout(null);
+		
+		panel_main = new JPanel();
+		add(panel_main);
+		panel_main.setBounds(0,0,1400,400);
+		panel_main.setLayout(new BoxLayout(panel_main, BoxLayout.PAGE_AXIS));
+
+		
+		//
+		//setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		//this.setBackground(Color.WHITE);
 
 		
@@ -168,7 +183,7 @@ public class ComputerGuessGame extends JPanel{
 		guessCount = 0;
 		
 		panel_0 = new JPanel();
-		add(panel_0);
+		panel_main.add(panel_0);
 		instructions = new JLabel("<html>Pick one of these superheroes."
 				+ "<br> The computer will try to guess which superhero you chose."
 				+ "<br> You will tell the computer 'too far to the left', 'too far to the right' or 'correct.'</html>");
@@ -178,7 +193,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		
 		panel_1 = new JPanel();
-		add(panel_1);
+		panel_main.add(panel_1);
 		
 		
 		//different heroes
@@ -227,7 +242,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		
 		panel_2 = new JPanel();
-		add(panel_2);
+		panel_main.add(panel_2);
 		guessCounter = new JLabel("Here is my first guess " );
 		panel_2.add(guessCounter);
 		
@@ -249,7 +264,9 @@ public class ComputerGuessGame extends JPanel{
 		//panel for buttons
 		panel_3 = new JPanel();
 		add(panel_3);
+		panel_3.setBounds(400,450,500,50);
 
+		
 		//button for guess too far to the left
 		btnNewButton_1 = new JButton("Too far to the left!");
 		panel_3.add(btnNewButton_1);
@@ -257,18 +274,21 @@ public class ComputerGuessGame extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				if(found == false){
 					if (low <= high-1){
-					
-						highlight(guess, false, numberLine);
-						binaryGuess(data, -1);
-						
-						guessCount += 1;
-						guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
-						
-						//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
-						//lblGuessNum.setText(Integer.toString(guess));
-						//lblGuessNum.setText("How about this guess:" + guess);
-						ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
-						numberLine.get(guess).setIcon(bisthbee);
+						if (guess == high){
+							JOptionPane.showMessageDialog(null,"I guessed the rightmost value of the range, this guess can't be too far left" );		
+						}else{
+							highlight(guess, false, numberLine);
+							binaryGuess(data, -1);
+							
+							guessCount += 1;
+							guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
+							
+							//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
+							//lblGuessNum.setText(Integer.toString(guess));
+							//lblGuessNum.setText("How about this guess:" + guess);
+							ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
+							numberLine.get(guess).setIcon(bisthbee);
+						}
 					}
 					else{
 						Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_o.png");
@@ -317,18 +337,22 @@ public class ComputerGuessGame extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(found == false){
 					if (low <= high-1){
-
-						highlight(guess, true, numberLine);
-						binaryGuess(data, 1);
-						
-						guessCount += 1;
-						guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
-						
-						//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
-						//lblGuessNum.setText(Integer.toString(guess));
-						//lblGuessNum.setText("How about this guess:" + guess);
-						ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
-						numberLine.get(guess).setIcon(bisthbee);
+						if (guess == low){
+							JOptionPane.showMessageDialog(null,"I guessed the leftmost value of the range, this guess can't be too far right" );		
+						}
+						else{
+							highlight(guess, true, numberLine);
+							binaryGuess(data, 1);
+							
+							guessCount += 1;
+							guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
+							
+							//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
+							//lblGuessNum.setText(Integer.toString(guess));
+							//lblGuessNum.setText("How about this guess:" + guess);
+							ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
+							numberLine.get(guess).setIcon(bisthbee);
+						}
 					}
 					else{
 						found = true;
@@ -348,6 +372,8 @@ public class ComputerGuessGame extends JPanel{
 		
 		panel_4 = new JPanel();
 		add(panel_4);
+		panel_4.setBounds(600,550,200,100);
+
 		reset = new JButton("Reset");
 		panel_4.add(reset);
 		
@@ -357,6 +383,24 @@ public class ComputerGuessGame extends JPanel{
 				reset();
 		}	
 		});	
+		
+		
+		//panel with sidekisck
+		Image img4 = null;
+	    try {
+	    	img4 = ImageIO.read(new File("src/supersidekick_2.png"));}
+	    catch (IOException e){	
+	    	e.printStackTrace();
+	    }
+
+		panel_5 = new BackgroundPanel(img4,2);
+		add(panel_5);
+		panel_5.setBounds(900,400,500,400);
+
+		//PATRICIA AND SONIA ADD YOUR INSTRUCTIONAL TEXT TO THIS INPUT
+		sidekick_text = new JLabel("              hello");
+		panel_5.add(sidekick_text);
+		
 		
 	}
 		

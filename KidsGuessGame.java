@@ -86,7 +86,7 @@ public class KidsGuessGame extends JPanel{
 		panel_4.setBounds(800,400,500,400);
 
 
-
+		//PATRICIA AND SONIA ADD YOUR INSTRUCTIONAL TEXT TO THIS INPUT
 		sidekick_text = new JLabel("              hello");
 		panel_4.add(sidekick_text);
 		//sidekick_text.setBounds(0, 0, 50, 50);

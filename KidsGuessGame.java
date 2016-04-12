@@ -62,8 +62,9 @@ public class KidsGuessGame extends JPanel{
 	
 	public KidsGuessGame(){
 		
-		Color my_Color = new Color(202,255,252);
-
+		//Color my_Color = new Color(202,255,252);
+		Color my_Color = Color.WHITE;
+		
 		setBackground(my_Color);
 		setLayout(null);
 		

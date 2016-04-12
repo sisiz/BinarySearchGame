@@ -166,7 +166,8 @@ public class ComputerGuessGame extends JPanel{
 	*/
 	public ComputerGuessGame() {
 		
-		Color my_Color = new Color(202,255,252);
+		//Color my_Color = new Color(202,255,252);
+		Color my_Color = Color.WHITE;
 		
 		setLayout(null);
 		setBackground( my_Color );
@@ -320,7 +321,7 @@ public class ComputerGuessGame extends JPanel{
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(found == false){
-					Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
+					Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_o.png");
 					((JLabel) numberLine.get(guess)).setIcon(im);
 					
 					guessCount += 1;

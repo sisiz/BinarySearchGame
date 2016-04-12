@@ -164,8 +164,23 @@ public class TabbedIntegratedScreens extends JFrame {
 		panel_Computer_Guess = new ComputerGuessGame();
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.PAGE_AXIS));
 		panel_1.add(panel_Computer_Guess);
-		//reset_Computer_Guess = new JButton("BACK TO START SCREEN");
-		panel_1.add(reset_Kids_Guess);
+		reset_Computer_Guess = new JButton("BACK TO START SCREEN");
+		reset_Computer_Guess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imageholder.setIcon(startscreen);
+				panel_holding2buttons.add(btnInstructions);
+				splitPane.setRightComponent(btnNewButton_1); 
+				splitPane.setLeftComponent(btnNewButton); 
+				panel_holding2buttons.remove(back);
+				panel_holding2buttons.remove(next1);
+				panel_holding2buttons.remove(next1CPU);
+				panel_holding2buttons.remove(toKidsMode);
+				panel_holding2buttons.remove(toCPUMode);
+				tabbedPane.setSelectedComponent(panel_0); 
+				repaint();
+			}		
+		});
+		panel_1.add(reset_Computer_Guess);
 		//panel_1.add(back);
 		//creates Computer Guess Mode tab
 		tabbedPane.addTab("Computer Game", null, panel_1, null);

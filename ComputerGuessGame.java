@@ -72,7 +72,7 @@ public class ComputerGuessGame extends JPanel{
 		Heroes.add("actual_deadpool");
 		Heroes.add("astronaut");
 		Heroes.add("batman");
-		Heroes.add("bisthbee_normal");
+		Heroes.add("bithsbee_normal");
 		Heroes.add("capt_america");
 		Heroes.add("deadpool");
 		Heroes.add("ghost_rider");
@@ -87,7 +87,7 @@ public class ComputerGuessGame extends JPanel{
 		Heroes.add("thor");
 		Heroes.add("torch");
 		Heroes.add("wolverine");
-		Heroes.add("wonderwman");
+		Heroes.add("wonderwoman");
 		//True = too high, False = too low
 		if (lowHigh){ //same as is lowHigh == True
 			for (int i = guess; i<numberLine.size() ; i++){
@@ -117,7 +117,7 @@ public class ComputerGuessGame extends JPanel{
 		Heroes.add("actual_deadpool");
 		Heroes.add("astronaut");
 		Heroes.add("batman");
-		Heroes.add("bisthbee_normal");
+		Heroes.add("bithsbee_normal");
 		Heroes.add("capt_america");
 		Heroes.add("deadpool");
 		Heroes.add("ghost_rider");
@@ -132,7 +132,7 @@ public class ComputerGuessGame extends JPanel{
 		Heroes.add("thor");
 		Heroes.add("torch");
 		Heroes.add("wolverine");
-		Heroes.add("wonderwman");
+		Heroes.add("wonderwoman");
 		for (int i = 0; i<numberLine.size(); i++) {
 			Icon im = new ImageIcon("src/" + Heroes.get(i)+".png");
 			//((JComponent)numberLine.get(i)).setForeground(Color.BLACK);
@@ -209,7 +209,7 @@ public class ComputerGuessGame extends JPanel{
 		Heroes.add("actual_deadpool");
 		Heroes.add("astronaut");
 		Heroes.add("batman");
-		Heroes.add("bisthbee_normal");
+		Heroes.add("bithsbee_normal");
 		Heroes.add("capt_america");
 		Heroes.add("deadpool");
 		Heroes.add("ghost_rider");
@@ -224,12 +224,12 @@ public class ComputerGuessGame extends JPanel{
 		Heroes.add("thor");
 		Heroes.add("torch");
 		Heroes.add("wolverine");
-		Heroes.add("wonderwman");
+		Heroes.add("wonderwoman");
 		
 		//creating number line
 		JLabel lblNewLabel = new JLabel("");
 		panel_1.add(lblNewLabel);
-		int x = 20;
+		int x = Heroes.size();
 		data = new int[x];
 		numberLine = new ArrayList<JLabel>();
 		
@@ -245,8 +245,7 @@ public class ComputerGuessGame extends JPanel{
 			panel_1.add(lblNew);
 			numberLine.add(lblNew);
 		}
-
-		
+		System.out.println(Heroes);
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(my_Color);
@@ -359,8 +358,16 @@ public class ComputerGuessGame extends JPanel{
 							//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
 							//lblGuessNum.setText(Integer.toString(guess));
 							//lblGuessNum.setText("How about this guess:" + guess);
-							ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
-							numberLine.get(guess).setIcon(bisthbee);
+
+							ImageIcon hero1 = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
+							//ImageIcon hero1 = new ImageIcon("src/batman_g.png");
+							System.out.println( hero1);
+							System.out.println( guess);
+							System.out.println( Heroes.get(guess));
+							numberLine.get(guess).setIcon(hero1);
+							System.out.println( numberLine.get(guess));
+							repaint();
+
 						}
 					}
 					else{

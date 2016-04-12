@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
 import javax.swing.JSplitPane;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -39,9 +40,18 @@ public class TabbedIntegratedScreens extends JFrame {
 	 * Create the frame.
 	 */
 	
-	private KidsGuessGame panel;
+	//private KidsGuessGame panel;
+	private JPanel panel;
+	private KidsGuessGame panel_Kids_Guess;
+	private JButton reset_Kids_Guess;
+	
+	private JPanel panel_0;
 	private JTabbedPane tabbedPane;
-	private ComputerGuessGame panel_1;
+	
+	private JPanel panel_1;
+	private ComputerGuessGame panel_Computer_Guess;
+	private JButton reset_Computer_Guess;
+	
 	private JPanel panel_imageholder;
 	private JPanel panel_holding2buttons;
 	private JPanel panel_KidsGuessModeIntro;
@@ -92,7 +102,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 		//creates Start Screen panel
-		JPanel panel_0 = new JPanel(); 
+		panel_0 = new JPanel(); 
 		//createsStart Screen tab
 		tabbedPane.addTab("Start Screen", null, panel_0, null); 
 		//creates a BorderLayout for the Start Screen panel
@@ -124,12 +134,39 @@ public class TabbedIntegratedScreens extends JFrame {
 		panel_holding2buttons.add(btnInstructions);
 		
 		//creates Kids Guess Mode panel
-		panel = new KidsGuessGame(); 
+		panel = new JPanel();
+		panel_Kids_Guess = new KidsGuessGame();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.add(panel_Kids_Guess); ////////////////////////////////////////////////////////
+		reset_Kids_Guess = new JButton("BACK TO START SCREEN");
+		reset_Kids_Guess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imageholder.setIcon(startscreen);
+				panel_holding2buttons.add(btnInstructions);
+				splitPane.setRightComponent(btnNewButton_1); 
+				splitPane.setLeftComponent(btnNewButton); 
+				panel_holding2buttons.remove(back);
+				panel_holding2buttons.remove(next1);
+				panel_holding2buttons.remove(next1CPU);
+				panel_holding2buttons.remove(toKidsMode);
+				panel_holding2buttons.remove(toCPUMode);
+				tabbedPane.setSelectedComponent(panel_0); 
+				repaint();
+			}		
+		});
+		panel.add(reset_Kids_Guess);
+		//panel.add(back);
 		//creates Kids Guess Mode tab
 		tabbedPane.addTab("Kids Game", null, panel, null); 
 		
 		//creates Computer Guess Mode panel
-		panel_1 = new ComputerGuessGame(); 
+		panel_1 = new JPanel(); 
+		panel_Computer_Guess = new ComputerGuessGame();
+		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.PAGE_AXIS));
+		panel_1.add(panel_Computer_Guess);
+		//reset_Computer_Guess = new JButton("BACK TO START SCREEN");
+		panel_1.add(reset_Kids_Guess);
+		//panel_1.add(back);
 		//creates Computer Guess Mode tab
 		tabbedPane.addTab("Computer Game", null, panel_1, null);
 		
@@ -272,13 +309,13 @@ public class TabbedIntegratedScreens extends JFrame {
 		toKidsMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch tab to Kids Guess Mode tab
-				panel.reset();
+				panel_Kids_Guess.reset();
 				tabbedPane.setSelectedComponent(panel); 
 			}});  
 		toCPUMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch tab to Computer Guess Mode tab
-				panel_1.reset();
+				panel_Computer_Guess.reset();
 				tabbedPane.setSelectedComponent(panel_1); 
 			}});  
 		/*btnNewButton.addActionListener(new ActionListener() {

@@ -62,10 +62,14 @@ public class KidsGuessGame extends JPanel{
 	
 	public KidsGuessGame(){
 		
+		Color my_Color = new Color(202,255,252);
+
+		setBackground(my_Color);
 		setLayout(null);
 		
 		panel_main = new JPanel();
 		add(panel_main);
+		panel_main.setBackground(my_Color);
 		panel_main.setBounds(0,0,1400,400);
 		panel_main.setLayout(new BoxLayout(panel_main, BoxLayout.PAGE_AXIS));
 		
@@ -83,6 +87,7 @@ public class KidsGuessGame extends JPanel{
 	    
 		panel_4 = new BackgroundPanel(img4,2);
 		add(panel_4);
+		panel_4.setBackground(my_Color);
 		panel_4.setBounds(800,400,500,400);
 
 
@@ -101,6 +106,7 @@ public class KidsGuessGame extends JPanel{
 		//panel with instructions
 		panel_0 = new JPanel();
 		panel_main.add(panel_0);
+		panel_0.setBackground(my_Color);
 		instructions = new JLabel("<html>The computer has chosen a superhero."
 				+ "<br> Guess which one the computer chose:<</html>");
 		panel_0.add(instructions);
@@ -110,6 +116,7 @@ public class KidsGuessGame extends JPanel{
 		//panel for number line
 		panel_1 = new JPanel();
 		panel_main.add(panel_1);
+		panel_1.setBackground(my_Color);
 		//create a list of labels
 		numberLine = new ArrayList();
 		for (int i = 0; i < 20; i++){
@@ -128,7 +135,7 @@ public class KidsGuessGame extends JPanel{
 		//panel for user input (text box for guess, and button to guess)
 		panel_2 = new JPanel();
 		panel_main.add(panel_2);
-
+		panel_2.setBackground(my_Color);
 
 		
 		//set initial variables
@@ -144,6 +151,7 @@ public class KidsGuessGame extends JPanel{
 		guessCounter = new JLabel();
 		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 		add(panel_3);
+		panel_3.setBackground(my_Color);
 		panel_3.setBounds(500,450,300,80);
 		panel_3.add(guessCounter);
 

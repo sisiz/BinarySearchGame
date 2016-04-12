@@ -166,9 +166,14 @@ public class ComputerGuessGame extends JPanel{
 	*/
 	public ComputerGuessGame() {
 		
+		Color my_Color = new Color(202,255,252);
+		
 		setLayout(null);
+		setBackground( my_Color );
+
 		
 		panel_main = new JPanel();
+		panel_main.setBackground(my_Color);
 		add(panel_main);
 		panel_main.setBounds(0,0,1400,400);
 		panel_main.setLayout(new BoxLayout(panel_main, BoxLayout.PAGE_AXIS));
@@ -183,6 +188,7 @@ public class ComputerGuessGame extends JPanel{
 		guessCount = 0;
 		
 		panel_0 = new JPanel();
+		panel_0.setBackground(my_Color);
 		panel_main.add(panel_0);
 		instructions = new JLabel("<html>Pick one of these superheroes."
 				+ "<br> The computer will try to guess which superhero you chose."
@@ -194,6 +200,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		panel_1 = new JPanel();
 		panel_main.add(panel_1);
+		panel_1.setBackground(my_Color);
 		
 		
 		//different heroes
@@ -242,6 +249,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		
 		panel_2 = new JPanel();
+		panel_2.setBackground(my_Color);
 		panel_main.add(panel_2);
 		guessCounter = new JLabel("Here is my first guess " );
 		panel_2.add(guessCounter);
@@ -264,6 +272,7 @@ public class ComputerGuessGame extends JPanel{
 		//panel for buttons
 		panel_3 = new JPanel();
 		add(panel_3);
+		panel_3.setBackground(my_Color);
 		panel_3.setBounds(400,450,500,50);
 
 		
@@ -372,6 +381,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		panel_4 = new JPanel();
 		add(panel_4);
+		panel_4.setBackground(my_Color);
 		panel_4.setBounds(600,550,200,100);
 
 		reset = new JButton("Reset");
@@ -395,6 +405,7 @@ public class ComputerGuessGame extends JPanel{
 
 		panel_5 = new BackgroundPanel(img4,2);
 		add(panel_5);
+		panel_5.setBackground(my_Color);
 		panel_5.setBounds(900,400,500,400);
 
 		//PATRICIA AND SONIA ADD YOUR INSTRUCTIONAL TEXT TO THIS INPUT

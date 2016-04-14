@@ -173,7 +173,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		});
 
 		panel.add(reset_Kids_Guess);
-		reset_Kids_Guess.setBounds(0, 730, 200, 70);
+		reset_Kids_Guess.setBounds(0, 730, 270, 70);
 		reset_Kids_Guess.setIcon(back_arrow);
 		//panel.add(back);
 		//creates Kids Guess Mode tab
@@ -205,7 +205,7 @@ public class TabbedIntegratedScreens extends JFrame {
 			}		
 		});
 		panel_1.add(reset_Computer_Guess);
-		reset_Computer_Guess.setBounds(0, 730, 200, 70);
+		reset_Computer_Guess.setBounds(0, 730, 270, 70);
 		reset_Computer_Guess.setIcon(back_arrow);
 
 		Computer_to_Kids = new JButton("NEXT");
@@ -261,6 +261,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		next1 = new JButton("Next");
 		next1.setPreferredSize(new Dimension(350,100));
 		next1.setFont(f);
+		next1.setIcon(arrow);
 
 		next2 = new JButton("Next");
 		

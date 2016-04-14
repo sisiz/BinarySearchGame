@@ -93,8 +93,15 @@ public class KidsGuessGame extends JPanel{
 
 
 		//PATRICIA AND SONIA ADD YOUR INSTRUCTIONAL TEXT TO THIS INPUT
-		sidekick_text = new JLabel("              hello");
+		sidekick_text = new JLabel("<html><br><br><br><br><br><br>"
+									+ "<br><blockquote>"
+									+ "Hint:"
+									+ "<br>Guess the middle number"
+									+ "<br>to find the hero in the"
+									+ "<br>fewest number of guesses."
+									+ "</blockquote></html>");
 		panel_4.add(sidekick_text);
+		sidekick_text.setVerticalAlignment(JLabel.TOP);
 		//sidekick_text.setBounds(0, 0, 50, 50);
 		//sidekick_text = new JLabel("Hello");
 		//sidekick_text.setFont(sidekick_text.getFont().deriveFont(Font.BOLD, 48));
@@ -194,6 +201,7 @@ public class KidsGuessGame extends JPanel{
 				//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
 				//add something later about playing again
 				Icon im = new ImageIcon("src/bisthbee_o.png");
+				found = true;
 				((Superhero) numberLine.get(guess)).setIcon(im);
 				JOptionPane.showMessageDialog(null,"Good job you found the superhero in " + Integer.toString(guessCount)+ " guesses!" );
 	

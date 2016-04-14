@@ -91,13 +91,13 @@ public class TabbedIntegratedScreens extends JFrame {
 	
 	public TabbedIntegratedScreens() {
 		//initiates background template
+		setTitle("Binary Search Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 15000, 800);
+		setBounds(0, 0, 15000, 900);
 		contentPane = new JPanel();
 		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
 		//creates tabbed buttons pane at the top of the screen
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);

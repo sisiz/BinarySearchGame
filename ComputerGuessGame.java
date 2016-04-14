@@ -246,7 +246,6 @@ public class ComputerGuessGame extends JPanel{
 			panel_1.add(lblNew);
 			numberLine.add(lblNew);
 		}
-		System.out.println(Heroes);
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(my_Color);
@@ -292,6 +291,13 @@ public class ComputerGuessGame extends JPanel{
 							guessCount += 1;
 							guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
 							
+							sidekick_text.setText("<html><br><br><br><br><br>"
+									+ "<br><blockquote>The Heroes with the red X's"
+									+ "<br>have been removed from the range."
+									+ "<br>Tell the computer:"
+									+ "<br>'too far to the left'"
+									+ "<br>'too far to the right'"
+									+ "<br>or 'correct.'</blockquote></html>");
 							//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
 							//lblGuessNum.setText(Integer.toString(guess));
 							//lblGuessNum.setText("How about this guess:" + guess);
@@ -359,14 +365,17 @@ public class ComputerGuessGame extends JPanel{
 							//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
 							//lblGuessNum.setText(Integer.toString(guess));
 							//lblGuessNum.setText("How about this guess:" + guess);
+							sidekick_text.setText("<html><br><br><br><br><br>"
+									+ "<br><blockquote>The Heroes with the red X's"
+									+ "<br>have been removed from the range."
+									+ "<br>Tell the computer:"
+									+ "<br>'too far to the left'"
+									+ "<br>'too far to the right'"
+									+ "<br>or 'correct.'</blockquote></html>");
 
 							ImageIcon hero1 = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
 							//ImageIcon hero1 = new ImageIcon("src/batman_g.png");
-							System.out.println( hero1);
-							System.out.println( guess);
-							System.out.println( Heroes.get(guess));
 							numberLine.get(guess).setIcon(hero1);
-							System.out.println( numberLine.get(guess));
 							repaint();
 
 						}
@@ -417,7 +426,16 @@ public class ComputerGuessGame extends JPanel{
 		panel_5.setBounds(900,400,500,400);
 
 		//PATRICIA AND SONIA ADD YOUR INSTRUCTIONAL TEXT TO THIS INPUT
-		sidekick_text = new JLabel("              hello");
+		sidekick_text = new JLabel("<html><br><br><br><br><br>"
+				+ "<br><blockquote>The guess is the hero"
+				+ "<br>circled in blue"
+				+ "<br>You will tell the computer:"
+				+ "<br>'too far to the left'"
+				+ "<br>'too far to the right'"
+				+ "<br>or 'correct.'</blockquote></html>");
+		//sidekick_text = new JLabel("");
+		sidekick_text.setVerticalAlignment(JLabel.TOP);
+		//sidekick_text.setHorizontalAlignment(JLabel.LEFT);
 		panel_5.add(sidekick_text);
 		
 		

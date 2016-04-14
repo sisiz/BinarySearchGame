@@ -52,8 +52,9 @@ public class KidsGuessGame extends JPanel{
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private BackgroundPanel panel_4;
-	
+	private JPanel panel_4;
+
+	private JLabel sidekick;
 	private JLabel sidekick_label;
 	private JLabel sidekick_text;
 	
@@ -64,6 +65,7 @@ public class KidsGuessGame extends JPanel{
 		
 		//Color my_Color = new Color(202,255,252);
 		Color my_Color = Color.WHITE;
+		Font f = new Font("ariel", Font.PLAIN, 20);
 		
 		setBackground(my_Color);
 		setLayout(null);
@@ -86,22 +88,16 @@ public class KidsGuessGame extends JPanel{
 	    	e.printStackTrace();
 	    }
 	    
-		panel_4 = new BackgroundPanel(img4,2);
-		add(panel_4);
+		//panel_4 = new BackgroundPanel(img4,2);
+		panel_4 = new JPanel();
+	    add(panel_4);
 		panel_4.setBackground(my_Color);
-		panel_4.setBounds(800,400,500,400);
-
-
-		//PATRICIA AND SONIA ADD YOUR INSTRUCTIONAL TEXT TO THIS INPUT
-		sidekick_text = new JLabel("<html><br><br><br><br><br><br>"
-									+ "<br><blockquote>"
-									+ "Hint:"
-									+ "<br>Guess the middle number"
-									+ "<br>to find the hero in the"
-									+ "<br>fewest number of guesses."
-									+ "</blockquote></html>");
-		panel_4.add(sidekick_text);
-		sidekick_text.setVerticalAlignment(JLabel.TOP);
+		panel_4.setBounds(840,400,500,400);
+		sidekick = new JLabel();
+		ImageIcon start = new ImageIcon("src/Sidekick-kidsguess-check-if-clone.png");
+		sidekick.setIcon(start);
+		panel_4.add(sidekick);
+		
 		//sidekick_text.setBounds(0, 0, 50, 50);
 		//sidekick_text = new JLabel("Hello");
 		//sidekick_text.setFont(sidekick_text.getFont().deriveFont(Font.BOLD, 48));
@@ -157,12 +153,14 @@ public class KidsGuessGame extends JPanel{
 		//panel for restart button
 		panel_3 = new JPanel();
 		guessCounter = new JLabel();
+		guessCounter.setFont(f);
 		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
 		add(panel_3);
 		panel_3.setBackground(my_Color);
 		panel_3.setBounds(500,450,300,80);
 		panel_3.add(guessCounter);
 
+		
 		reset = new JButton("Reset");
 		panel_3.add(reset);
 		reset.addActionListener(new ActionListener() {
@@ -181,6 +179,10 @@ public class KidsGuessGame extends JPanel{
 		high = numberLine.size()  ;	
 		guessCount = 0;
 		guessCounter.setText("You have guessed " + Integer.toString(guessCount) + " times  ");
+		
+		ImageIcon start = new ImageIcon("src/Sidekick-kidsguess-check-if-clone.png");
+		sidekick.setIcon(start);
+
 		repaint();
 	}
 	
@@ -202,10 +204,12 @@ public class KidsGuessGame extends JPanel{
 				//add something later about playing again
 				Icon im = new ImageIcon("src/bisthbee_o.png");
 				found = true;
+
+				ImageIcon winner = new ImageIcon("src/Sidekick-yay-winner.png");
+				sidekick.setIcon(winner);
+
 				((Superhero) numberLine.get(guess)).setIcon(im);
 				JOptionPane.showMessageDialog(null,"Good job you found the superhero in " + Integer.toString(guessCount)+ " guesses!" );
-	
-	
 	
 			}
 			//child's guess less than the number the computer chose
@@ -213,6 +217,10 @@ public class KidsGuessGame extends JPanel{
 				guessCount += 1;
 				highlight(guess,false, numberLine);
 				low = guess;
+
+				ImageIcon left = new ImageIcon("src/Sidekick-Oops-the-left-ones-are-clones.png");
+				sidekick.setIcon(left);
+				
 				instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
 						+ "<br>Guess a superhero that is not crossed out</html>");
 				
@@ -222,6 +230,10 @@ public class KidsGuessGame extends JPanel{
 				guessCount += 1;
 				highlight(guess,true, numberLine);
 				high = guess;
+				
+				ImageIcon right = new ImageIcon("src/Sidekick-clones-to-the-right.png");
+				sidekick.setIcon(right);
+
 				instructions_2.setText("<html>The crossed out superheroes have been removed from the range"
 						+ "<br>Guess a superhero that is not crossed out</html>");
 			}

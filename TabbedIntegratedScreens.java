@@ -2,7 +2,9 @@ package example1;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -101,6 +103,9 @@ public class TabbedIntegratedScreens extends JFrame {
 		//creates tabbed buttons pane at the top of the screen
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		ImageIcon arrow = new ImageIcon("src/green_arrow.png");
+		ImageIcon back_arrow = new ImageIcon("src/red_arrow.png");
+
 		
 		//creates Start Screen panel
 		panel_0 = new JPanel(); 
@@ -111,6 +116,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 		//creates panel that holds the 2 buttons
 		panel_holding2buttons = new JPanel();
+		//panel_holding2buttons.setLayout(new BorderLayout(0, 0));
 		//splits the holding2buttons panel into 2 for the Kids Guess Mode button & the Computer Guess Mode button
 		splitPane = new JSplitPane();
 		//adds the holding2buttons panel to the center section of panel_0, the start screen panel
@@ -121,24 +127,34 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 		//creates button for Kids Guess Mode
 		btnNewButton = new JButton("Kids Guess Mode");
+		btnNewButton.setPreferredSize(new Dimension(350,100));
+		Font f = new Font("ariel", Font.PLAIN, 25);
+		btnNewButton.setFont(f);
+
 		//puts button in left pane that was previously split
 		//splitPane.setLeftComponent(btnNewButton); 
 		
 		//creates button for Computer Guess Mode
-		btnNewButton_1 = new JButton("Computer Guess Mode");
+		btnNewButton_1 = new JButton("Next");
+		btnNewButton_1.setPreferredSize(new Dimension(350,100));
+		btnNewButton_1.setFont(f);
+
 		//puts button in right pane that was previously split
 		//splitPane.setRightComponent(btnNewButton_1); 
 		
 		//creates button for Instructions
 		btnInstructions = new JButton("What's Binary Search?");
+		btnInstructions.setPreferredSize(new Dimension(350,100));
+		btnInstructions.setFont(f);
 		//adds the instructions button to the panel_holding2buttons
 		panel_holding2buttons.add(btnInstructions);
 		
 		//creates Kids Guess Mode panel
 		panel = new JPanel();
 		panel_Kids_Guess = new KidsGuessGame();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.setLayout(null);
 		panel.add(panel_Kids_Guess); ////////////////////////////////////////////////////////
+		panel_Kids_Guess.setBounds(0,0,1500,720);
 		reset_Kids_Guess = new JButton("BACK TO START SCREEN");
 		reset_Kids_Guess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,7 +171,10 @@ public class TabbedIntegratedScreens extends JFrame {
 				repaint();
 			}		
 		});
+
 		panel.add(reset_Kids_Guess);
+		reset_Kids_Guess.setBounds(0, 730, 200, 70);
+		reset_Kids_Guess.setIcon(back_arrow);
 		//panel.add(back);
 		//creates Kids Guess Mode tab
 		tabbedPane.addTab("Kids Game", null, panel, null); 
@@ -163,8 +182,12 @@ public class TabbedIntegratedScreens extends JFrame {
 		//creates Computer Guess Mode panel
 		panel_1 = new JPanel(); 
 		panel_Computer_Guess = new ComputerGuessGame();
-		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.PAGE_AXIS));
+		//panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.PAGE_AXIS));///////////
+		panel_1.setLayout(null);
+
 		panel_1.add(panel_Computer_Guess);
+		panel_Computer_Guess.setBounds(0,0,1500,720);
+
 		reset_Computer_Guess = new JButton("BACK TO START SCREEN");
 		reset_Computer_Guess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -182,8 +205,14 @@ public class TabbedIntegratedScreens extends JFrame {
 			}		
 		});
 		panel_1.add(reset_Computer_Guess);
-		
-		Computer_to_Kids = new JButton("KIDS MODE");
+		reset_Computer_Guess.setBounds(0, 730, 200, 70);
+		reset_Computer_Guess.setIcon(back_arrow);
+
+		Computer_to_Kids = new JButton("NEXT");
+		Computer_to_Kids.setIcon(arrow);
+		Computer_to_Kids.setBackground(Color.GREEN);
+		Computer_to_Kids.setOpaque(true);
+		//Computer_to_Kids.setForeground(Color.GREEN);
 		Computer_to_Kids.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				imageholder.setIcon(storyline1);
@@ -199,6 +228,8 @@ public class TabbedIntegratedScreens extends JFrame {
 			}		
 		});
 		panel_1.add(Computer_to_Kids);
+		Computer_to_Kids.setBounds(1200, 730, 200, 70);
+
 		//panel_1.add(back);
 		//creates Computer Guess Mode tab
 		tabbedPane.addTab("Computer Game", null, panel_1, null);
@@ -228,19 +259,44 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 		//creates button to go to storyline2
 		next1 = new JButton("Next");
+		next1.setPreferredSize(new Dimension(350,100));
+		next1.setFont(f);
+
 		next2 = new JButton("Next");
+		
 		next3 = new JButton("Next");	//not being used now
 		
 		//creates button to go to storyline2 for CPU
 		next1CPU = new JButton("Next");
-		next2CPU = new JButton("Next");	//not being used now
+		next1CPU.setPreferredSize(new Dimension(350,100));
+		next1CPU.setFont(f);
+		next1CPU.setIcon(arrow);
+
+		next2CPU = new JButton("Next");
+		next2CPU.setPreferredSize(new Dimension(350,100));
+		next2CPU.setFont(f);
+		next2CPU.setIcon(arrow);
+
+
 		next3CPU = new JButton("Next");
+		next3CPU.setPreferredSize(new Dimension(350,100));
+		next3CPU.setFont(f);
+		next3CPU.setIcon(arrow);
+
 		
 		//creates button to go to Kids Mode
 		toKidsMode = new JButton("Start!");
+		toKidsMode.setPreferredSize(new Dimension(350,100));
+		toKidsMode.setFont(f);
+		toKidsMode.setIcon(arrow);
+
 		
 		//creates button to go to CPU Mode
 		toCPUMode = new JButton("Start!");
+		toCPUMode.setPreferredSize(new Dimension(350,100));
+		toCPUMode.setFont(f);
+		toCPUMode.setIcon(arrow);
+
 		
 		//Storyline Images
 		
@@ -263,6 +319,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		
 
 		//actions for the buttons
+		btnNewButton.setIcon(arrow);;
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
@@ -272,8 +329,11 @@ public class TabbedIntegratedScreens extends JFrame {
 				panel_holding2buttons.remove(btnInstructions);
 				splitPane.remove(btnNewButton_1);
 				splitPane.remove(btnNewButton);
+
 				repaint();
 			}});  
+		
+		btnNewButton_1.setIcon(arrow);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image

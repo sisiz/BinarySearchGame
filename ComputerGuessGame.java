@@ -2,7 +2,9 @@ package example1;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +37,8 @@ public class ComputerGuessGame extends JPanel{
 	public int high;
 	private int guessCount;
 	private boolean found;
+
+	private JButton Ready;
 	
 	private JButton reset;
 	private JLabel lblGuessNum;
@@ -58,6 +62,7 @@ public class ComputerGuessGame extends JPanel{
 	private ArrayList<JLabel> numberLine;
 	private ArrayList<String> Heroes;
 
+	private JLabel sidekick;
 	private JLabel sidekick_label;
 	private JLabel sidekick_text;
 	
@@ -250,7 +255,10 @@ public class ComputerGuessGame extends JPanel{
 		panel_2 = new JPanel();
 		panel_2.setBackground(my_Color);
 		panel_main.add(panel_2);
-		guessCounter = new JLabel("Here is my first guess " );
+		guessCounter = new JLabel("Chose one of these superheroes in your head" );
+		//guessCounter = new JLabel("Here is my first guess " );
+		Font f = new Font("ariel", Font.PLAIN, 20);
+		guessCounter.setFont(f);
 		panel_2.add(guessCounter);
 		
 		//lblMyGuess = new JLabel("My Guess:");
@@ -265,19 +273,20 @@ public class ComputerGuessGame extends JPanel{
 		high = data.length - 1;
 		guess =(low+high)/2; 
 		//lblGuessNum.setText(Integer.toString(guess));
-		ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
-		numberLine.get(guess).setIcon(bisthbee);
+		//ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
+		//numberLine.get(guess).setIcon(bisthbee);
 		
 		//panel for buttons
 		panel_3 = new JPanel();
 		add(panel_3);
 		panel_3.setBackground(my_Color);
-		panel_3.setBounds(400,450,500,50);
+		panel_3.setBounds(400,450,500,70);
+
 
 		
 		//button for guess too far to the left
 		btnNewButton_1 = new JButton("Too far to the left!");
-		panel_3.add(btnNewButton_1);
+		//panel_3.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(found == false){
@@ -291,13 +300,9 @@ public class ComputerGuessGame extends JPanel{
 							guessCount += 1;
 							guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times, now " );
 							
-							sidekick_text.setText("<html><br><br><br><br><br>"
-									+ "<br><blockquote>The Heroes with the red X's"
-									+ "<br>have been removed from the range."
-									+ "<br>Tell the computer:"
-									+ "<br>'too far to the left'"
-									+ "<br>'too far to the right'"
-									+ "<br>or 'correct.'</blockquote></html>");
+							//ImageIcon winner = new ImageIcon("src/Sidekick-yay-winner.png"); //diff pic
+							//sidekick.setIcon(winner);
+
 							//JOptionPane.showMessageDialog(null,"How about this guess."+ guess);
 							//lblGuessNum.setText(Integer.toString(guess));
 							//lblGuessNum.setText("How about this guess:" + guess);
@@ -309,6 +314,10 @@ public class ComputerGuessGame extends JPanel{
 						Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_o.png");
 						((JLabel) numberLine.get(guess)).setIcon(im);
 						found = true;
+						
+						ImageIcon winner = new ImageIcon("src/Sidekick-yay-winner.png");
+						sidekick.setIcon(winner);
+
 						guessCount += 1;
 						guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
 						JOptionPane.showMessageDialog(null,"I have  found the superhero! \n You can restart the game by clicking on the reset button" );	
@@ -323,7 +332,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		//button for correct guess
 		btnNewButton_2 = new JButton("Correct");
-		panel_3.add(btnNewButton_2);
+		//panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(found == false){
@@ -333,6 +342,9 @@ public class ComputerGuessGame extends JPanel{
 					guessCount += 1;
 					guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
 					found = true;
+					ImageIcon winner = new ImageIcon("src/Sidekick-yay-winner.png");
+					sidekick.setIcon(winner);
+
 					//((JComponent)numberLine.get(guess)).setForeground(Color.GREEN);
 					//JOptionPane.showMessageDialog(null,"Your number is guessed correctly. Mind read successful.");
 					//lblMyGuess.setText("Your number is guessed correctly. Mind read successful.");
@@ -346,7 +358,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		//button for guess too far to the right
 		btnNewButton = new JButton("Too far to the right!");
-		panel_3.add(btnNewButton);
+		//panel_3.add(btnNewButton);
 		//Pass the "too high" info to binaryGuess and update the display
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -365,13 +377,9 @@ public class ComputerGuessGame extends JPanel{
 							//JOptionPane.showMessageDialog(null,"How about this guess." + guess);
 							//lblGuessNum.setText(Integer.toString(guess));
 							//lblGuessNum.setText("How about this guess:" + guess);
-							sidekick_text.setText("<html><br><br><br><br><br>"
-									+ "<br><blockquote>The Heroes with the red X's"
-									+ "<br>have been removed from the range."
-									+ "<br>Tell the computer:"
-									+ "<br>'too far to the left'"
-									+ "<br>'too far to the right'"
-									+ "<br>or 'correct.'</blockquote></html>");
+							
+							//ImageIcon winner = new ImageIcon("src/Sidekick-yay-winner.png");//change to diff pic?
+							//sidekick.setIcon(winner);
 
 							ImageIcon hero1 = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
 							//ImageIcon hero1 = new ImageIcon("src/batman_g.png");
@@ -384,6 +392,8 @@ public class ComputerGuessGame extends JPanel{
 						found = true;
 						Icon im = new ImageIcon("src/"+Heroes.get(guess)+"_o.png");
 						((JLabel) numberLine.get(guess)).setIcon(im);
+						ImageIcon winner = new ImageIcon("src/Sidekick-yay-winner.png");
+						sidekick.setIcon(winner);
 						guessCount += 1;
 						guessCounter.setText("It took me " + Integer.toString(guessCount) + " total guesses " );
 						JOptionPane.showMessageDialog(null,"I have  found the superhero! \n You can restart the game by clicking on the reset button" );	
@@ -395,6 +405,36 @@ public class ComputerGuessGame extends JPanel{
 				}
 			}
 		});
+		
+		//to have a start thing before game begins
+		Ready = new JButton("Ready!");
+		Ready.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panel_3.remove(Ready);
+				panel_3.add(btnNewButton_1);
+				panel_3.add(btnNewButton_2);
+				panel_3.add(btnNewButton);
+				ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
+				numberLine.get(guess).setIcon(bisthbee);
+				
+				ImageIcon first_guess = new ImageIcon("src/Sidekick-Is-this-your-super-hero.png");
+				sidekick.setIcon(first_guess);
+
+				
+				guessCounter.setText("I have guesses "+guessCount+" times");
+				panel_3.revalidate();
+				panel_3.repaint();
+				repaint();
+
+			}
+		});
+		panel_3.add(Ready);
+		Ready.setPreferredSize(new Dimension(300,60));
+		Font f5 = new Font("ariel", Font.PLAIN, 25);
+		Ready.setFont(f5);
+
+
+		
 		
 		panel_4 = new JPanel();
 		add(panel_4);
@@ -413,30 +453,16 @@ public class ComputerGuessGame extends JPanel{
 		
 		
 		//panel with sidekisck
-		Image img4 = null;
-	    try {
-	    	img4 = ImageIO.read(new File("src/supersidekick_2.png"));}
-	    catch (IOException e){	
-	    	e.printStackTrace();
-	    }
-
-		panel_5 = new BackgroundPanel(img4,2);
+		
+		panel_5 = new JPanel();
+		sidekick = new JLabel();
+		ImageIcon start_sidekick = new ImageIcon("src/Sidekick-I-guess-in-the-middle.png");
+		sidekick.setIcon(start_sidekick);
+		panel_5.add(sidekick);
 		add(panel_5);
 		panel_5.setBackground(my_Color);
 		panel_5.setBounds(900,400,500,400);
 
-		//PATRICIA AND SONIA ADD YOUR INSTRUCTIONAL TEXT TO THIS INPUT
-		sidekick_text = new JLabel("<html><br><br><br><br><br>"
-				+ "<br><blockquote>The guess is the hero"
-				+ "<br>circled in blue"
-				+ "<br>You will tell the computer:"
-				+ "<br>'too far to the left'"
-				+ "<br>'too far to the right'"
-				+ "<br>or 'correct.'</blockquote></html>");
-		//sidekick_text = new JLabel("");
-		sidekick_text.setVerticalAlignment(JLabel.TOP);
-		//sidekick_text.setHorizontalAlignment(JLabel.LEFT);
-		panel_5.add(sidekick_text);
 		
 		
 	}
@@ -448,12 +474,26 @@ public class ComputerGuessGame extends JPanel{
 		low = 0;
 		high = data.length - 1;
 		guess = (low+high)/2;
-		ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
-		numberLine.get(guess).setIcon(bisthbee);
+		//ImageIcon bisthbee = new ImageIcon("src/"+Heroes.get(guess)+"_g.png");
+		//numberLine.get(guess).setIcon(bisthbee);
 		//lblMyGuess.setText("MyGuess:");
 		//lblGuessNum.setText(Integer.toString(guess));
+		ImageIcon start_sidekick = new ImageIcon("src/Sidekick-I-guess-in-the-middle.png");
+		sidekick.setIcon(start_sidekick);
+
+		panel_3.add(Ready);
+		panel_3.remove(btnNewButton_1);
+		panel_3.remove(btnNewButton_2);
+		panel_3.remove(btnNewButton);
+		//guessCounter.setText("I have guesses "+guessCount+" times");
+		guessCounter.setText("Chose one of these superheroes in your head");
+		panel_3.revalidate();
+		panel_3.repaint();
+		repaint();
+		panel_2.repaint();
+
 		guessCount = 0;
-		guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times  ");
+		//guessCounter.setText("I have guessed " + Integer.toString(guessCount) + " times  ");
 		repaint();
 	}
 	

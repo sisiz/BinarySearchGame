@@ -63,8 +63,6 @@ public class ComputerGuessGame extends JPanel{
 	private ArrayList<String> Heroes;
 
 	private JLabel sidekick;
-	private JLabel sidekick_label;
-	private JLabel sidekick_text;
 	
 	
 	/*
@@ -173,6 +171,7 @@ public class ComputerGuessGame extends JPanel{
 		
 		//Color my_Color = new Color(202,255,252);
 		Color my_Color = Color.WHITE;
+		Font f = new Font("ariel", Font.PLAIN, 20);
 		
 		setLayout(null);
 		setBackground( my_Color );
@@ -181,7 +180,7 @@ public class ComputerGuessGame extends JPanel{
 		panel_main = new JPanel();
 		panel_main.setBackground(my_Color);
 		add(panel_main);
-		panel_main.setBounds(0,0,1400,400);
+		panel_main.setBounds(0,0,1400,300);
 		panel_main.setLayout(new BoxLayout(panel_main, BoxLayout.PAGE_AXIS));
 
 		
@@ -196,12 +195,12 @@ public class ComputerGuessGame extends JPanel{
 		panel_0 = new JPanel();
 		panel_0.setBackground(my_Color);
 		panel_main.add(panel_0);
-		instructions = new JLabel("<html>Pick one of these superheroes."
+		/*instructions = new JLabel("<html>Pick one of these superheroes."
 				+ "<br> The computer will try to guess which superhero you chose."
 				+ "<br> You will tell the computer 'too far to the left', 'too far to the right' or 'correct.'</html>");
+		panel_0.add(instructions);*/
+		instructions = new JLabel("<html><br><br><br><br><br><br></html>");
 		panel_0.add(instructions);
-
-		
 		
 		
 		panel_1 = new JPanel();
@@ -257,8 +256,8 @@ public class ComputerGuessGame extends JPanel{
 		panel_main.add(panel_2);
 		guessCounter = new JLabel("Chose one of these superheroes in your head" );
 		//guessCounter = new JLabel("Here is my first guess " );
-		Font f = new Font("ariel", Font.PLAIN, 20);
-		guessCounter.setFont(f);
+		Font f2 = new Font("ariel", Font.PLAIN, 25);
+		guessCounter.setFont(f2);
 		panel_2.add(guessCounter);
 		
 		//lblMyGuess = new JLabel("My Guess:");
@@ -280,12 +279,14 @@ public class ComputerGuessGame extends JPanel{
 		panel_3 = new JPanel();
 		add(panel_3);
 		panel_3.setBackground(my_Color);
-		panel_3.setBounds(400,450,500,70);
+		panel_3.setBounds(50,450,800,70);
 
 
 		
 		//button for guess too far to the left
 		btnNewButton_1 = new JButton("Too far to the left!");
+		btnNewButton_1.setPreferredSize(new Dimension(250,50));
+		btnNewButton_1.setFont(f);
 		//panel_3.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -332,6 +333,8 @@ public class ComputerGuessGame extends JPanel{
 		
 		//button for correct guess
 		btnNewButton_2 = new JButton("Correct");
+		btnNewButton_2.setPreferredSize(new Dimension(250,50));
+		btnNewButton_2.setFont(f);
 		//panel_3.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -358,6 +361,8 @@ public class ComputerGuessGame extends JPanel{
 		
 		//button for guess too far to the right
 		btnNewButton = new JButton("Too far to the right!");
+		btnNewButton.setPreferredSize(new Dimension(250,50));
+		btnNewButton.setFont(f);
 		//panel_3.add(btnNewButton);
 		//Pass the "too high" info to binaryGuess and update the display
 		btnNewButton.addActionListener(new ActionListener() {
@@ -439,7 +444,7 @@ public class ComputerGuessGame extends JPanel{
 		panel_4 = new JPanel();
 		add(panel_4);
 		panel_4.setBackground(my_Color);
-		panel_4.setBounds(600,550,200,100);
+		panel_4.setBounds(350,550,200,100);
 
 		reset = new JButton("Reset");
 		panel_4.add(reset);
@@ -461,7 +466,7 @@ public class ComputerGuessGame extends JPanel{
 		panel_5.add(sidekick);
 		add(panel_5);
 		panel_5.setBackground(my_Color);
-		panel_5.setBounds(900,400,500,400);
+		panel_5.setBounds(800,300,600,400);
 
 		
 		

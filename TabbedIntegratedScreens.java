@@ -67,6 +67,8 @@ public class TabbedIntegratedScreens extends JFrame {
 	
 	private ImageIcon startscreen;
 	private ImageIcon storyline1;
+	private ImageIcon storyline0;
+	private ImageIcon storyline00;
 	private ImageIcon storyline2;
 	private ImageIcon storyline3;
 	private ImageIcon storyline4;		//not being used now
@@ -146,6 +148,8 @@ public class TabbedIntegratedScreens extends JFrame {
 		btnInstructions = new JButton("What's Binary Search?");
 		btnInstructions.setPreferredSize(new Dimension(350,100));
 		btnInstructions.setFont(f);
+		btnInstructions.setBackground(Color.GREEN);
+		btnInstructions.setOpaque(true);
 		//adds the instructions button to the panel_holding2buttons
 		panel_holding2buttons.add(btnInstructions);
 		
@@ -215,7 +219,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		//Computer_to_Kids.setForeground(Color.GREEN);
 		Computer_to_Kids.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				imageholder.setIcon(storyline1);
+				imageholder.setIcon(storyline0);
 				panel_holding2buttons.add(back);
 				panel_holding2buttons.add(next1);
 				panel_holding2buttons.remove(btnInstructions);
@@ -300,6 +304,8 @@ public class TabbedIntegratedScreens extends JFrame {
 
 		
 		//Storyline Images
+		storyline0 = new ImageIcon("src/clonescreen.png");
+		storyline00 = new ImageIcon("src/realheroscreen.png");
 		
 		//creates image icon for the 1st storyline image]
 		storyline1 = new ImageIcon("src/storyline1.png");
@@ -350,7 +356,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		next1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
-				imageholder.setIcon(storyline2);
+				imageholder.setIcon(storyline00);
 				panel_holding2buttons.remove(next1);
 				panel_holding2buttons.add(toKidsMode);
 				repaint();

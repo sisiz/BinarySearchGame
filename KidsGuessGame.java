@@ -55,8 +55,6 @@ public class KidsGuessGame extends JPanel{
 	private JPanel panel_4;
 
 	private JLabel sidekick;
-	private JLabel sidekick_label;
-	private JLabel sidekick_text;
 	
 	private ArrayList numberLine;
 
@@ -73,7 +71,7 @@ public class KidsGuessGame extends JPanel{
 		panel_main = new JPanel();
 		add(panel_main);
 		panel_main.setBackground(my_Color);
-		panel_main.setBounds(0,0,1400,400);
+		panel_main.setBounds(0,0,1400,300);
 		panel_main.setLayout(new BoxLayout(panel_main, BoxLayout.PAGE_AXIS));
 		
 		
@@ -92,7 +90,7 @@ public class KidsGuessGame extends JPanel{
 		panel_4 = new JPanel();
 	    add(panel_4);
 		panel_4.setBackground(my_Color);
-		panel_4.setBounds(840,400,500,400);
+		panel_4.setBounds(800,300,600,400);
 		sidekick = new JLabel();
 		ImageIcon start = new ImageIcon("src/Sidekick-kidsguess-check-if-clone.png");
 		sidekick.setIcon(start);
@@ -111,8 +109,10 @@ public class KidsGuessGame extends JPanel{
 		panel_0 = new JPanel();
 		panel_main.add(panel_0);
 		panel_0.setBackground(my_Color);
-		instructions = new JLabel("<html>The computer has chosen a superhero."
+		/*instructions = new JLabel("<html>The computer has chosen a superhero."
 				+ "<br> Guess which one the computer chose:<</html>");
+		panel_0.add(instructions);*/
+		instructions = new JLabel("<html><br><br><br><br><br></html>");
 		panel_0.add(instructions);
 
 		

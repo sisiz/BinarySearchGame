@@ -182,7 +182,7 @@ public class KidsGuessGame extends JPanel{
 		
 		ImageIcon start = new ImageIcon("src/Sidekick-kidsguess-check-if-clone.png");
 		sidekick.setIcon(start);
-
+		instructions_2.setText("");
 		repaint();
 	}
 	

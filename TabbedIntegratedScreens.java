@@ -77,7 +77,19 @@ public class TabbedIntegratedScreens extends JFrame {
 	private ImageIcon storyline3CPU;
 	private ImageIcon storyline4CPU;	//not being used now
 	
+	private ImageIcon binarysearch1;
+	private ImageIcon binarysearch2;
+	private ImageIcon binarysearch3;
+	private ImageIcon binarysearch4;
+	private ImageIcon binarysearch5;
+	private ImageIcon binarysearch6;
+	
 	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JButton btnNewButton_5;
+	private JButton btnNewButton_6;
 	private ImageIcon binarysearch;
 	private JButton btnInstructions;
 	private JButton btnNewButton;
@@ -140,7 +152,27 @@ public class TabbedIntegratedScreens extends JFrame {
 		btnNewButton_1 = new JButton("Next");
 		btnNewButton_1.setPreferredSize(new Dimension(350,100));
 		btnNewButton_1.setFont(f);
+		
+		btnNewButton_2 = new JButton("Next");
+		btnNewButton_2.setPreferredSize(new Dimension(350,100));
+		btnNewButton_2.setFont(f);
 
+		btnNewButton_3 = new JButton("Next");
+		btnNewButton_3.setPreferredSize(new Dimension(350,100));
+		btnNewButton_3.setFont(f);
+		
+		btnNewButton_4 = new JButton("Next");
+		btnNewButton_4.setPreferredSize(new Dimension(350,100));
+		btnNewButton_4.setFont(f);
+		
+		btnNewButton_5 = new JButton("Next");
+		btnNewButton_5.setPreferredSize(new Dimension(350,100));
+		btnNewButton_5.setFont(f);
+		
+		btnNewButton_6 = new JButton("Next");
+		btnNewButton_6.setPreferredSize(new Dimension(350,100));
+		btnNewButton_6.setFont(f);
+		
 		//puts button in right pane that was previously split
 		//splitPane.setRightComponent(btnNewButton_1); 
 		
@@ -324,6 +356,13 @@ public class TabbedIntegratedScreens extends JFrame {
 		//creates image icon for the 2nd storyline image for the CPU Guess Mode]
 		storyline4CPU = new ImageIcon("src/CPUscreen3.png");
 		
+		//creates image icons for binarysearch instructions
+		binarysearch1 = new ImageIcon("src/binarysearch1.png");
+		binarysearch2 = new ImageIcon("src/binarysearch2.png");
+		binarysearch3 = new ImageIcon("src/binarysearch3.png");
+		binarysearch4 = new ImageIcon("src/binarysearch4.png");
+		binarysearch5 = new ImageIcon("src/binarysearch5.png");
+		binarysearch6 = new ImageIcon("src/binarysearch6.png");
 
 		//actions for the buttons
 		btnNewButton.setIcon(arrow);;
@@ -344,12 +383,67 @@ public class TabbedIntegratedScreens extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
-				imageholder.setIcon(storyline1);
+				imageholder.setIcon(binarysearch2);
 				panel_holding2buttons.add(back);
-				panel_holding2buttons.add(next1CPU);
+				panel_holding2buttons.add(btnNewButton_2);
 				//panel_holding2buttons.remove(btnInstructions);
 				panel_holding2buttons.remove(btnNewButton_1);
 				//splitPane.remove(btnNewButton);
+				repaint();
+			}});
+		
+		btnNewButton_2.setIcon(arrow);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(binarysearch3);
+				panel_holding2buttons.add(back);
+				panel_holding2buttons.add(btnNewButton_3);
+				panel_holding2buttons.remove(btnNewButton_2);
+				repaint();
+			}});
+		
+		btnNewButton_3.setIcon(arrow);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(binarysearch4);
+				panel_holding2buttons.add(back);
+				panel_holding2buttons.add(btnNewButton_4);
+				panel_holding2buttons.remove(btnNewButton_3);
+				repaint();
+			}});
+		
+		btnNewButton_4.setIcon(arrow);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(binarysearch5);
+				panel_holding2buttons.add(back);
+				panel_holding2buttons.add(btnNewButton_5);
+				panel_holding2buttons.remove(btnNewButton_4);
+				repaint();
+			}});
+		
+		btnNewButton_5.setIcon(arrow);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(binarysearch6);
+				panel_holding2buttons.add(back);
+				panel_holding2buttons.add(btnNewButton_6);
+				panel_holding2buttons.remove(btnNewButton_5);
+				repaint();
+			}});
+		
+		btnNewButton_6.setIcon(arrow);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//switch to storyline1 image
+				imageholder.setIcon(storyline1);
+				panel_holding2buttons.add(back);
+				panel_holding2buttons.add(next1CPU);
+				panel_holding2buttons.remove(btnNewButton_6);
 				repaint();
 			}});
 		
@@ -432,7 +526,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		btnInstructions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//sets the binarysearch image onto the imageholder
-				imageholder.setIcon(binarysearch);
+				imageholder.setIcon(binarysearch1);
 				//adds back button to panel holding 2 buttons
 				panel_holding2buttons.add(back);
 				panel_holding2buttons.add(btnNewButton_1);
@@ -453,6 +547,12 @@ public class TabbedIntegratedScreens extends JFrame {
 				panel_holding2buttons.remove(next3CPU);
 				panel_holding2buttons.remove(toKidsMode);
 				panel_holding2buttons.remove(toCPUMode);
+				panel_holding2buttons.remove(btnNewButton_2);
+				panel_holding2buttons.remove(btnNewButton_3);
+				panel_holding2buttons.remove(btnNewButton_4);
+				panel_holding2buttons.remove(btnNewButton_5);
+				panel_holding2buttons.remove(btnNewButton_6);
+				
 				repaint();
 			}});
 

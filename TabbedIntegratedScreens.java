@@ -177,7 +177,7 @@ public class TabbedIntegratedScreens extends JFrame {
 		//splitPane.setRightComponent(btnNewButton_1); 
 		
 		//creates button for Instructions
-		btnInstructions = new JButton("What's Binary Search?");
+		btnInstructions = new JButton("START");
 		btnInstructions.setPreferredSize(new Dimension(350,100));
 		btnInstructions.setFont(f);
 		btnInstructions.setBackground(Color.GREEN);
@@ -251,9 +251,9 @@ public class TabbedIntegratedScreens extends JFrame {
 		//Computer_to_Kids.setForeground(Color.GREEN);
 		Computer_to_Kids.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				imageholder.setIcon(storyline0);
+				imageholder.setIcon(binarysearch1);
 				panel_holding2buttons.add(back);
-				panel_holding2buttons.add(next1);
+				panel_holding2buttons.add(btnNewButton_1);
 				panel_holding2buttons.remove(btnInstructions);
 				panel_holding2buttons.remove(toCPUMode);
 				//splitPane.remove(btnNewButton_1);
@@ -440,9 +440,9 @@ public class TabbedIntegratedScreens extends JFrame {
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//switch to storyline1 image
-				imageholder.setIcon(storyline1);
+				imageholder.setIcon(storyline0);
 				panel_holding2buttons.add(back);
-				panel_holding2buttons.add(next1CPU);
+				panel_holding2buttons.add(next1);
 				panel_holding2buttons.remove(btnNewButton_6);
 				repaint();
 			}});
@@ -524,12 +524,10 @@ public class TabbedIntegratedScreens extends JFrame {
 				tabbedPane.setSelectedComponent(panel_1); 
 			}}); */
 		btnInstructions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//sets the binarysearch image onto the imageholder
-				imageholder.setIcon(binarysearch1);
-				//adds back button to panel holding 2 buttons
+			public void actionPerformed(ActionEvent e) {				
+				imageholder.setIcon(storyline1);
 				panel_holding2buttons.add(back);
-				panel_holding2buttons.add(btnNewButton_1);
+				panel_holding2buttons.add(next1CPU);
 				panel_holding2buttons.remove(btnInstructions);
 				repaint();
 			}});
